@@ -7,23 +7,69 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B8641DA617EB55040D2D02A /* libPods-Stop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08BCB25F0E322D9A10CB9DBC /* libPods-Stop.a */; };
+		F71645D5243CFD2600A8673E /* UIViewWithXib.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71645D4243CFD2600A8673E /* UIViewWithXib.swift */; };
+		F71645D7243CFD4800A8673E /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71645D6243CFD4800A8673E /* NavigationBarView.swift */; };
+		F71645D9243CFD5E00A8673E /* NavigationBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F71645D8243CFD5E00A8673E /* NavigationBarView.xib */; };
+		F71645DB243D015F00A8673E /* IBDesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71645DA243D015F00A8673E /* IBDesignableView.swift */; };
+		F71645DD243D021200A8673E /* Separator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71645DC243D021200A8673E /* Separator.swift */; };
+		F71645DF243D0E3E00A8673E /* GameSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71645DE243D0E3E00A8673E /* GameSetupViewController.swift */; };
+		F71645E1243D1C2400A8673E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71645E0243D1C2400A8673E /* BaseViewController.swift */; };
+		F71645E7243DE22700A8673E /* BaseViewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71645E6243DE22700A8673E /* BaseViewController+UITextFieldDelegate.swift */; };
+		F71645E9243DE7B600A8673E /* MainMenuVC+ MCNearbyServiceAdvertiserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71645E8243DE7B600A8673E /* MainMenuVC+ MCNearbyServiceAdvertiserDelegate.swift */; };
+		F71645EB243EC01200A8673E /* UIView+ViewsTopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71645EA243EC01200A8673E /* UIView+ViewsTopViewController.swift */; };
+		F71645ED243ECFBE00A8673E /* GameSetupVC+UIPickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71645EC243ECFBE00A8673E /* GameSetupVC+UIPickerViewDelegate.swift */; };
+		F71645EF243ECFEF00A8673E /* GameSetupVC+UIPickerViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71645EE243ECFEF00A8673E /* GameSetupVC+UIPickerViewDataSource.swift */; };
+		F71645F2243EDE0B00A8673E /* IBDesignableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71645F1243EDE0B00A8673E /* IBDesignableLabel.swift */; };
 		F73ECA1A2439F8B1003C320C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73ECA192439F8B1003C320C /* AppDelegate.swift */; };
-		F73ECA1C2439F8B1003C320C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73ECA1B2439F8B1003C320C /* SceneDelegate.swift */; };
-		F73ECA1E2439F8B1003C320C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73ECA1D2439F8B1003C320C /* ViewController.swift */; };
+		F73ECA1E2439F8B1003C320C /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73ECA1D2439F8B1003C320C /* MainMenuViewController.swift */; };
 		F73ECA212439F8B1003C320C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F73ECA1F2439F8B1003C320C /* Main.storyboard */; };
-		F73ECA232439F8B2003C320C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F73ECA222439F8B2003C320C /* Assets.xcassets */; };
+		F73ECA232439F8B2003C320C /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F73ECA222439F8B2003C320C /* Icons.xcassets */; };
 		F73ECA262439F8B2003C320C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F73ECA242439F8B2003C320C /* LaunchScreen.storyboard */; };
+		F73ECA3B243A05E6003C320C /* UIFont+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73ECA3A243A05E6003C320C /* UIFont+Style.swift */; };
+		F7E591D8243B967E000CFC54 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7E591D7243B967E000CFC54 /* Colors.xcassets */; };
+		F7E591DA243B9787000CFC54 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7E591D9243B9787000CFC54 /* Media.xcassets */; };
+		F7E591DC243BADDC000CFC54 /* IBDesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E591DB243BADDC000CFC54 /* IBDesignableButton.swift */; };
+		F7E591DE243BAE48000CFC54 /* UIView+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E591DD243BAE48000CFC54 /* UIView+Attributes.swift */; };
+		F7E591E2243BBA3C000CFC54 /* MainMenuVC+MCSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E591E1243BBA3C000CFC54 /* MainMenuVC+MCSessionDelegate.swift */; };
+		F7E591E4243BBA7B000CFC54 /* MainMenuVC+MCBrowserViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E591E3243BBA7B000CFC54 /* MainMenuVC+MCBrowserViewControllerDelegate.swift */; };
+		F7E591EA243BC9AD000CFC54 /* Sniglet-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F7E591E8243BC9AD000CFC54 /* Sniglet-Regular.ttf */; };
+		F7E591EB243BC9AD000CFC54 /* Sniglet-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F7E591E9243BC9AD000CFC54 /* Sniglet-ExtraBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		08BCB25F0E322D9A10CB9DBC /* libPods-Stop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Stop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2733595683FE7D29B0616C66 /* Pods-Stop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stop.debug.xcconfig"; path = "Target Support Files/Pods-Stop/Pods-Stop.debug.xcconfig"; sourceTree = "<group>"; };
+		D106D6FE7180DE448C2B52DC /* Pods-Stop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stop.release.xcconfig"; path = "Target Support Files/Pods-Stop/Pods-Stop.release.xcconfig"; sourceTree = "<group>"; };
+		F71645D4243CFD2600A8673E /* UIViewWithXib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewWithXib.swift; sourceTree = "<group>"; };
+		F71645D6243CFD4800A8673E /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
+		F71645D8243CFD5E00A8673E /* NavigationBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavigationBarView.xib; sourceTree = "<group>"; };
+		F71645DA243D015F00A8673E /* IBDesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBDesignableView.swift; sourceTree = "<group>"; };
+		F71645DC243D021200A8673E /* Separator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Separator.swift; sourceTree = "<group>"; };
+		F71645DE243D0E3E00A8673E /* GameSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSetupViewController.swift; sourceTree = "<group>"; };
+		F71645E0243D1C2400A8673E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		F71645E6243DE22700A8673E /* BaseViewController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseViewController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
+		F71645E8243DE7B600A8673E /* MainMenuVC+ MCNearbyServiceAdvertiserDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainMenuVC+ MCNearbyServiceAdvertiserDelegate.swift"; sourceTree = "<group>"; };
+		F71645EA243EC01200A8673E /* UIView+ViewsTopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ViewsTopViewController.swift"; sourceTree = "<group>"; };
+		F71645EC243ECFBE00A8673E /* GameSetupVC+UIPickerViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameSetupVC+UIPickerViewDelegate.swift"; sourceTree = "<group>"; };
+		F71645EE243ECFEF00A8673E /* GameSetupVC+UIPickerViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameSetupVC+UIPickerViewDataSource.swift"; sourceTree = "<group>"; };
+		F71645F1243EDE0B00A8673E /* IBDesignableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBDesignableLabel.swift; sourceTree = "<group>"; };
 		F73ECA162439F8B1003C320C /* Stop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F73ECA192439F8B1003C320C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F73ECA1B2439F8B1003C320C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F73ECA1D2439F8B1003C320C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F73ECA1D2439F8B1003C320C /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		F73ECA202439F8B1003C320C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		F73ECA222439F8B2003C320C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F73ECA222439F8B2003C320C /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
 		F73ECA252439F8B2003C320C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F73ECA272439F8B2003C320C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F73ECA3A243A05E6003C320C /* UIFont+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Style.swift"; sourceTree = "<group>"; };
+		F7E591D7243B967E000CFC54 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		F7E591D9243B9787000CFC54 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		F7E591DB243BADDC000CFC54 /* IBDesignableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBDesignableButton.swift; sourceTree = "<group>"; };
+		F7E591DD243BAE48000CFC54 /* UIView+Attributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Attributes.swift"; sourceTree = "<group>"; };
+		F7E591E1243BBA3C000CFC54 /* MainMenuVC+MCSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainMenuVC+MCSessionDelegate.swift"; sourceTree = "<group>"; };
+		F7E591E3243BBA7B000CFC54 /* MainMenuVC+MCBrowserViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainMenuVC+MCBrowserViewControllerDelegate.swift"; sourceTree = "<group>"; };
+		F7E591E8243BC9AD000CFC54 /* Sniglet-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sniglet-Regular.ttf"; sourceTree = "<group>"; };
+		F7E591E9243BC9AD000CFC54 /* Sniglet-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sniglet-ExtraBold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +77,55 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B8641DA617EB55040D2D02A /* libPods-Stop.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		60FA1C923ABB264832DFFA0F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				08BCB25F0E322D9A10CB9DBC /* libPods-Stop.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F71645D1243CFC7F00A8673E /* Nibs */ = {
+			isa = PBXGroup;
+			children = (
+				F71645D8243CFD5E00A8673E /* NavigationBarView.xib */,
+			);
+			path = Nibs;
+			sourceTree = "<group>";
+		};
+		F71645D2243CFC8800A8673E /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F71645D4243CFD2600A8673E /* UIViewWithXib.swift */,
+				F71645D6243CFD4800A8673E /* NavigationBarView.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		F71645D3243CFCC100A8673E /* Reusable Views */ = {
+			isa = PBXGroup;
+			children = (
+				F71645DC243D021200A8673E /* Separator.swift */,
+				F71645D2243CFC8800A8673E /* Classes */,
+				F71645D1243CFC7F00A8673E /* Nibs */,
+			);
+			path = "Reusable Views";
+			sourceTree = "<group>";
+		};
 		F73ECA0D2439F8B1003C320C = {
 			isa = PBXGroup;
 			children = (
 				F73ECA182439F8B1003C320C /* Stop */,
 				F73ECA172439F8B1003C320C /* Products */,
+				FD0E0E166B72F491AAD6AF5D /* Pods */,
+				60FA1C923ABB264832DFFA0F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +140,130 @@
 		F73ECA182439F8B1003C320C /* Stop */ = {
 			isa = PBXGroup;
 			children = (
-				F73ECA192439F8B1003C320C /* AppDelegate.swift */,
-				F73ECA1B2439F8B1003C320C /* SceneDelegate.swift */,
-				F73ECA1D2439F8B1003C320C /* ViewController.swift */,
-				F73ECA1F2439F8B1003C320C /* Main.storyboard */,
-				F73ECA222439F8B2003C320C /* Assets.xcassets */,
-				F73ECA242439F8B2003C320C /* LaunchScreen.storyboard */,
+				F7E591E5243BBF04000CFC54 /* Helpers */,
+				F73ECA33243A03BB003C320C /* Assets */,
+				F73ECA2D243A036E003C320C /* Data */,
+				F73ECA2E243A0376003C320C /* Delegates */,
+				F73ECA37243A041F003C320C /* Extensions */,
+				F73ECA36243A0416003C320C /* FontFamily */,
 				F73ECA272439F8B2003C320C /* Info.plist */,
+				F73ECA34243A03CA003C320C /* Storyboards */,
+				F73ECA2F243A038C003C320C /* View Controllers */,
+				F73ECA32243A03AC003C320C /* Views */,
 			);
 			path = Stop;
+			sourceTree = "<group>";
+		};
+		F73ECA2D243A036E003C320C /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				F73ECA31243A03A4003C320C /* Managers */,
+				F73ECA30243A0397003C320C /* Models */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		F73ECA2E243A0376003C320C /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				F73ECA192439F8B1003C320C /* AppDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		F73ECA2F243A038C003C320C /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F71645E0243D1C2400A8673E /* BaseViewController.swift */,
+				F71645DE243D0E3E00A8673E /* GameSetupViewController.swift */,
+				F73ECA1D2439F8B1003C320C /* MainMenuViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		F73ECA30243A0397003C320C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F73ECA31243A03A4003C320C /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		F73ECA32243A03AC003C320C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F7E591DB243BADDC000CFC54 /* IBDesignableButton.swift */,
+				F71645F1243EDE0B00A8673E /* IBDesignableLabel.swift */,
+				F71645DA243D015F00A8673E /* IBDesignableView.swift */,
+				F71645D3243CFCC100A8673E /* Reusable Views */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F73ECA33243A03BB003C320C /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				F73ECA222439F8B2003C320C /* Icons.xcassets */,
+				F7E591D7243B967E000CFC54 /* Colors.xcassets */,
+				F7E591D9243B9787000CFC54 /* Media.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		F73ECA34243A03CA003C320C /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				F73ECA242439F8B2003C320C /* LaunchScreen.storyboard */,
+				F73ECA1F2439F8B1003C320C /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		F73ECA36243A0416003C320C /* FontFamily */ = {
+			isa = PBXGroup;
+			children = (
+				F7E591E9243BC9AD000CFC54 /* Sniglet-ExtraBold.ttf */,
+				F7E591E8243BC9AD000CFC54 /* Sniglet-Regular.ttf */,
+			);
+			name = FontFamily;
+			sourceTree = "<group>";
+		};
+		F73ECA37243A041F003C320C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F71645E6243DE22700A8673E /* BaseViewController+UITextFieldDelegate.swift */,
+				F71645EE243ECFEF00A8673E /* GameSetupVC+UIPickerViewDataSource.swift */,
+				F71645EC243ECFBE00A8673E /* GameSetupVC+UIPickerViewDelegate.swift */,
+				F71645E8243DE7B600A8673E /* MainMenuVC+ MCNearbyServiceAdvertiserDelegate.swift */,
+				F7E591E3243BBA7B000CFC54 /* MainMenuVC+MCBrowserViewControllerDelegate.swift */,
+				F7E591E1243BBA3C000CFC54 /* MainMenuVC+MCSessionDelegate.swift */,
+				F73ECA3A243A05E6003C320C /* UIFont+Style.swift */,
+				F7E591DD243BAE48000CFC54 /* UIView+Attributes.swift */,
+				F71645EA243EC01200A8673E /* UIView+ViewsTopViewController.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F7E591E5243BBF04000CFC54 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		FD0E0E166B72F491AAD6AF5D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2733595683FE7D29B0616C66 /* Pods-Stop.debug.xcconfig */,
+				D106D6FE7180DE448C2B52DC /* Pods-Stop.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +273,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F73ECA2A2439F8B2003C320C /* Build configuration list for PBXNativeTarget "Stop" */;
 			buildPhases = (
+				B402665EC330D2A88E36C9E8 /* [CP] Check Pods Manifest.lock */,
 				F73ECA122439F8B1003C320C /* Sources */,
 				F73ECA132439F8B1003C320C /* Frameworks */,
 				F73ECA142439F8B1003C320C /* Resources */,
@@ -125,22 +325,68 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7E591DA243B9787000CFC54 /* Media.xcassets in Resources */,
 				F73ECA262439F8B2003C320C /* LaunchScreen.storyboard in Resources */,
-				F73ECA232439F8B2003C320C /* Assets.xcassets in Resources */,
+				F7E591D8243B967E000CFC54 /* Colors.xcassets in Resources */,
+				F73ECA232439F8B2003C320C /* Icons.xcassets in Resources */,
+				F7E591EA243BC9AD000CFC54 /* Sniglet-Regular.ttf in Resources */,
+				F7E591EB243BC9AD000CFC54 /* Sniglet-ExtraBold.ttf in Resources */,
+				F71645D9243CFD5E00A8673E /* NavigationBarView.xib in Resources */,
 				F73ECA212439F8B1003C320C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B402665EC330D2A88E36C9E8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Stop-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F73ECA122439F8B1003C320C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F73ECA1E2439F8B1003C320C /* ViewController.swift in Sources */,
+				F71645E7243DE22700A8673E /* BaseViewController+UITextFieldDelegate.swift in Sources */,
+				F71645E1243D1C2400A8673E /* BaseViewController.swift in Sources */,
+				F71645EB243EC01200A8673E /* UIView+ViewsTopViewController.swift in Sources */,
+				F73ECA1E2439F8B1003C320C /* MainMenuViewController.swift in Sources */,
+				F71645ED243ECFBE00A8673E /* GameSetupVC+UIPickerViewDelegate.swift in Sources */,
 				F73ECA1A2439F8B1003C320C /* AppDelegate.swift in Sources */,
-				F73ECA1C2439F8B1003C320C /* SceneDelegate.swift in Sources */,
+				F71645DB243D015F00A8673E /* IBDesignableView.swift in Sources */,
+				F71645E9243DE7B600A8673E /* MainMenuVC+ MCNearbyServiceAdvertiserDelegate.swift in Sources */,
+				F73ECA3B243A05E6003C320C /* UIFont+Style.swift in Sources */,
+				F71645D7243CFD4800A8673E /* NavigationBarView.swift in Sources */,
+				F7E591E4243BBA7B000CFC54 /* MainMenuVC+MCBrowserViewControllerDelegate.swift in Sources */,
+				F71645F2243EDE0B00A8673E /* IBDesignableLabel.swift in Sources */,
+				F7E591E2243BBA3C000CFC54 /* MainMenuVC+MCSessionDelegate.swift in Sources */,
+				F7E591DE243BAE48000CFC54 /* UIView+Attributes.swift in Sources */,
+				F7E591DC243BADDC000CFC54 /* IBDesignableButton.swift in Sources */,
+				F71645EF243ECFEF00A8673E /* GameSetupVC+UIPickerViewDataSource.swift in Sources */,
+				F71645D5243CFD2600A8673E /* UIViewWithXib.swift in Sources */,
+				F71645DF243D0E3E00A8673E /* GameSetupViewController.swift in Sources */,
+				F71645DD243D021200A8673E /* Separator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +462,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -270,7 +516,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -282,6 +528,7 @@
 		};
 		F73ECA2B2439F8B2003C320C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2733595683FE7D29B0616C66 /* Pods-Stop.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -300,6 +547,7 @@
 		};
 		F73ECA2C2439F8B2003C320C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D106D6FE7180DE448C2B52DC /* Pods-Stop.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
