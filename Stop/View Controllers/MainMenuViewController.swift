@@ -23,11 +23,14 @@ class MainMenuViewController: BaseViewController {
     }
     
     @IBAction func showCategoriesOnTouchUpInside(_ sender: Any) {
+        let categoriesViewController = CategoriesViewController.instantiate() as!  CategoriesViewController
+        
+        navigationController?.pushViewController(categoriesViewController, animated: true)
     }
     
-    deinit {
-        print("\(self) is being deinitialized")
-    }
+//    deinit {
+//        print("\(self) is being deinitialized")
+//    }
     
     var peerID: MCPeerID!
     var mcSession: MCSession!

@@ -8,14 +8,14 @@
 
 import UIKit
 
-class CategoryTableViewCell: UITableViewCell {
+class CategoryTableViewCell: BaseTableViewCell {
 
     @IBOutlet weak var categoryName: UILabel!
     
-//    var data: Category? {
-//        didSet {
-//            categoryName.text = data
-//        }
-//    }
+    var data: Category? {
+        didSet {
+            categoryName.text = data?.name
+        }
+    }
 
 }

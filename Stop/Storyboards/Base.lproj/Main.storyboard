@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jdM-q8-EPc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0fB-RG-aMJ">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
@@ -10,6 +10,9 @@
     <customFonts key="customFonts">
         <array key="Sniglet-ExtraBold.ttf">
             <string>Sniglet-ExtraBold</string>
+        </array>
+        <array key="Sniglet-Regular.ttf">
+            <string>Sniglet-Regular</string>
         </array>
     </customFonts>
     <scenes>
@@ -179,15 +182,12 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vIW-Uf-YZ7" customClass="NavigationBarView" customModule="Stop" customModuleProvider="target">
                                                 <rect key="frame" x="22" y="15" width="331" height="75"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="75" id="4un-jD-Rc5"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="navigationBarTitle" value="Setup"/>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="25"/>
-                                                    </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="sCW-vs-1R3">
@@ -398,7 +398,7 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <action selector="chooseCategoriesOnTouchUpInside:" destination="jdM-q8-EPc" eventType="touchUpInside" id="Vjd-9O-1pJ"/>
+                                                            <action selector="chooseCategoriesOnTouchUpInside:" destination="jdM-q8-EPc" eventType="touchUpInside" id="KAE-e6-KnZ"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -492,32 +492,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZNa-vt-bkI" customClass="NavigationBarView" customModule="Stop" customModuleProvider="target">
-                                <rect key="frame" x="22" y="59.000000000000007" width="331" height="71.666666666666686"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" allowsMultipleSelection="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="svi-C3-VjY">
+                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="25"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="navigationBarTitle" value="Categories"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="svi-C3-VjY">
-                                <rect key="frame" x="0.0" y="130.66666666666669" width="375" height="647.33333333333326"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="q6I-XY-z76">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="125"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZNa-vt-bkI" customClass="NavigationBarView" customModule="Stop" customModuleProvider="target">
+                                            <rect key="frame" x="22" y="15" width="331" height="71.666666666666671"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="71.670000000000002" id="Vom-9V-I9T"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="navigationBarTitle" value="Categories"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <constraints>
+                                        <constraint firstItem="ZNa-vt-bkI" firstAttribute="leading" secondItem="q6I-XY-z76" secondAttribute="leading" constant="22" id="8FO-eE-l8d"/>
+                                        <constraint firstAttribute="trailing" secondItem="ZNa-vt-bkI" secondAttribute="trailing" constant="22" id="INR-dd-564"/>
+                                        <constraint firstItem="ZNa-vt-bkI" firstAttribute="top" secondItem="q6I-XY-z76" secondAttribute="top" constant="15" id="mzV-yj-LHc"/>
+                                        <constraint firstAttribute="bottom" secondItem="ZNa-vt-bkI" secondAttribute="bottom" constant="38.329999999999998" id="ylu-J4-8qV"/>
+                                    </constraints>
+                                </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CategoryTableViewCell" rowHeight="76" id="Gx7-jD-OTn" customClass="CategoryTableViewCell" customModule="Stop" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="76"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CategoryTableViewCell" id="Gx7-jD-OTn" customClass="CategoryTableViewCell" customModule="Stop" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="153" width="375" height="80.333335876464844"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gx7-jD-OTn" id="2r4-gE-aTg">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="76"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80.333335876464844"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GFv-yY-BYO" customClass="IBDesignableView" customModule="Stop" customModuleProvider="target">
-                                                    <rect key="frame" x="22" y="10" width="331" height="56"/>
+                                                    <rect key="frame" x="22" y="10.000000000000004" width="331" height="55.333333333333343"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQq-hn-4FN">
-                                                            <rect key="frame" x="20" y="14" width="291" height="28"/>
+                                                            <rect key="frame" x="20" y="13.999999999999998" width="291" height="27.333333333333329"/>
                                                             <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
                                                             <color key="textColor" name="Label Gray App"/>
                                                             <nil key="highlightedColor"/>
@@ -541,7 +554,7 @@
                                                             <real key="value" value="0.20000000000000001"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                            <real key="value" value="15"/>
+                                                            <real key="value" value="5"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
                                                             <size key="value" width="5" height="5"/>
@@ -553,7 +566,7 @@
                                                 <constraint firstItem="GFv-yY-BYO" firstAttribute="top" secondItem="2r4-gE-aTg" secondAttribute="top" constant="10" id="1Ch-w9-h2j"/>
                                                 <constraint firstItem="GFv-yY-BYO" firstAttribute="leading" secondItem="2r4-gE-aTg" secondAttribute="leading" constant="22" id="YYc-UO-xSY"/>
                                                 <constraint firstAttribute="trailing" secondItem="GFv-yY-BYO" secondAttribute="trailing" constant="22" id="cWd-uv-vMc"/>
-                                                <constraint firstAttribute="bottom" secondItem="GFv-yY-BYO" secondAttribute="bottom" constant="10" id="wrx-z4-vZd"/>
+                                                <constraint firstAttribute="bottom" secondItem="GFv-yY-BYO" secondAttribute="bottom" constant="15" id="wrx-z4-vZd"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -561,25 +574,90 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="VQm-rj-bWX" id="tgO-TR-eDe"/>
-                                    <outlet property="delegate" destination="VQm-rj-bWX" id="ps4-Et-EYO"/>
-                                </connections>
                             </tableView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sm1-0Q-w8Q" customClass="IBDesignableButton" customModule="Stop" customModuleProvider="target">
+                                <rect key="frame" x="50" y="680" width="48" height="48"/>
+                                <color key="backgroundColor" name="Red App"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="2Vp-9m-ZXp"/>
+                                    <constraint firstAttribute="height" constant="48" id="mBY-by-LIg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Sniglet-Regular" family="Sniglet" pointSize="45"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="-"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="24"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                        <size key="value" width="5" height="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="0.40000000000000002"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="deleteCategoryOnTouchUpInside:" destination="VQm-rj-bWX" eventType="touchUpInside" id="bVV-JU-lwz"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OkU-0s-Gx3" customClass="IBDesignableButton" customModule="Stop" customModuleProvider="target">
+                                <rect key="frame" x="277" y="680" width="48" height="48"/>
+                                <color key="backgroundColor" name="Red App"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="1ye-6d-FpV"/>
+                                    <constraint firstAttribute="width" constant="48" id="fWh-BW-oW8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Sniglet-Regular" family="Sniglet" pointSize="45"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="+"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="24"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                        <size key="value" width="5" height="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="0.40000000000000002"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="addCategoryOnTouchUpInside:" destination="VQm-rj-bWX" eventType="touchUpInside" id="76d-oP-puS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="ugg-vP-CWp" firstAttribute="trailing" secondItem="ZNa-vt-bkI" secondAttribute="trailing" constant="22" id="7d1-rr-mLq"/>
-                            <constraint firstItem="ZNa-vt-bkI" firstAttribute="top" secondItem="ugg-vP-CWp" secondAttribute="top" constant="15" id="AVm-Vu-0MS"/>
+                            <constraint firstItem="ugg-vP-CWp" firstAttribute="trailing" secondItem="OkU-0s-Gx3" secondAttribute="trailing" constant="50" id="7zy-QO-DsA"/>
+                            <constraint firstItem="svi-C3-VjY" firstAttribute="top" secondItem="ugg-vP-CWp" secondAttribute="top" id="9oL-sP-vXf"/>
                             <constraint firstItem="ugg-vP-CWp" firstAttribute="trailing" secondItem="svi-C3-VjY" secondAttribute="trailing" id="DuP-uU-voW"/>
+                            <constraint firstItem="ugg-vP-CWp" firstAttribute="bottom" secondItem="OkU-0s-Gx3" secondAttribute="bottom" constant="50" id="HpE-Sj-FT4"/>
                             <constraint firstItem="ugg-vP-CWp" firstAttribute="bottom" secondItem="svi-C3-VjY" secondAttribute="bottom" id="KYB-2O-ztD"/>
-                            <constraint firstItem="svi-C3-VjY" firstAttribute="top" secondItem="ZNa-vt-bkI" secondAttribute="bottom" id="SoF-cR-u3L"/>
+                            <constraint firstItem="Sm1-0Q-w8Q" firstAttribute="leading" secondItem="ugg-vP-CWp" secondAttribute="leading" constant="50" id="Rpt-UT-9iD"/>
                             <constraint firstItem="svi-C3-VjY" firstAttribute="leading" secondItem="ugg-vP-CWp" secondAttribute="leading" id="WJW-0n-fvk"/>
-                            <constraint firstItem="ZNa-vt-bkI" firstAttribute="leading" secondItem="ugg-vP-CWp" secondAttribute="leading" constant="22" id="eJW-yY-34f"/>
+                            <constraint firstItem="ugg-vP-CWp" firstAttribute="bottom" secondItem="Sm1-0Q-w8Q" secondAttribute="bottom" constant="50" id="z3q-eH-wsX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ugg-vP-CWp"/>
                     </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="keyboardManagment" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
+                        <outlet property="addCategory" destination="OkU-0s-Gx3" id="krc-Av-pgR"/>
+                        <outlet property="contentScrollView" destination="svi-C3-VjY" id="q6R-w3-sMT"/>
+                        <outlet property="deleteCategory" destination="Sm1-0Q-w8Q" id="6Pa-uz-q7g"/>
                         <outlet property="navigationBar" destination="ZNa-vt-bkI" id="zMD-4j-fUH"/>
                         <outlet property="tableView" destination="svi-C3-VjY" id="SOo-3B-Lqb"/>
                     </connections>

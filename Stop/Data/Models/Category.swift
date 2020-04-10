@@ -28,7 +28,7 @@ class Category: Object {
         self.name = name
     }
     
-    deinit {
-        print("\(self) is being deinitialized")
-    }
+//    deinit {
+//        print("\(self) is being deinitialized")
+//    }
 }

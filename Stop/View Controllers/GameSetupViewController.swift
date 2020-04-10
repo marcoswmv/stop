@@ -16,7 +16,9 @@ class GameSetupViewController: BaseViewController {
     @IBOutlet weak var navigationBar: NavigationBarView!
     
     @IBAction func chooseCategoriesOnTouchUpInside(_ sender: Any) {
-//        TODO: Show categories View Controller to choose between them
+        let categoriesViewController = CategoriesViewController.instantiate() as!  CategoriesViewController
+        
+        navigationController?.pushViewController(categoriesViewController, animated: true)
     }
     
     @IBAction func startGameOnTouchUpInside(_ sender: Any) {
@@ -40,7 +42,7 @@ class GameSetupViewController: BaseViewController {
         super.viewDidLoad()
 
         navigationBar.backButton.isHidden = true
-        navigationBar.doneButton.isHidden = true
+        navigationBar.editButton.isHidden = true
         hideKeyboardWhenTappedAround()
         createLetterPicker()
     }
