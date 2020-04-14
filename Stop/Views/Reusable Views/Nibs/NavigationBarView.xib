@@ -10,12 +10,16 @@
         <array key="Sniglet-ExtraBold.ttf">
             <string>Sniglet-ExtraBold</string>
         </array>
+        <array key="Sniglet-Regular.ttf">
+            <string>Sniglet-Regular</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NavigationBarView" customModule="Stop" customModuleProvider="target">
             <connections>
                 <outlet property="backButton" destination="jw4-Od-jbB" id="ZIp-mD-x77"/>
                 <outlet property="editButton" destination="WoH-tM-SD3" id="yII-jG-Puy"/>
+                <outlet property="gameLetter" destination="U7k-oA-tbI" id="Pg7-L2-GNl"/>
                 <outlet property="title" destination="UYl-TE-Gsf" id="u7o-Of-aUF"/>
                 <outlet property="view" destination="iN0-l3-epB" id="nLQ-x3-qcm"/>
             </connections>
@@ -25,12 +29,23 @@
             <rect key="frame" x="0.0" y="0.0" width="370" height="75"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYl-TE-Gsf">
-                    <rect key="frame" x="157" y="18.5" width="56.5" height="38"/>
-                    <fontDescription key="fontDescription" name="Sniglet-ExtraBold" family="Sniglet" pointSize="30"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="waS-0m-Pjl">
+                    <rect key="frame" x="157" y="18.5" width="56.5" height="37.5"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYl-TE-Gsf">
+                            <rect key="frame" x="0.0" y="0.0" width="56.5" height="37.5"/>
+                            <fontDescription key="fontDescription" name="Sniglet-ExtraBold" family="Sniglet" pointSize="30"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Letter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U7k-oA-tbI">
+                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="37.5"/>
+                            <fontDescription key="fontDescription" name="Sniglet-Regular" family="Sniglet" pointSize="45"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jw4-Od-jbB" customClass="IBDesignableButton" customModule="Stop" customModuleProvider="target">
                     <rect key="frame" x="12" y="13.5" width="48" height="48"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -93,18 +108,18 @@
             </subviews>
             <color key="backgroundColor" name="Red App"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="waS-0m-Pjl" secondAttribute="bottom" constant="19" id="5IJ-7K-wpX"/>
                 <constraint firstItem="jw4-Od-jbB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="5gE-wV-DNz"/>
-                <constraint firstItem="UYl-TE-Gsf" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="6Rn-LS-TdC"/>
                 <constraint firstItem="jw4-Od-jbB" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="AIn-IH-mjI"/>
                 <constraint firstItem="WoH-tM-SD3" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Abi-ZF-Ey1"/>
                 <constraint firstAttribute="trailing" secondItem="WoH-tM-SD3" secondAttribute="trailing" constant="12" id="b8T-oe-myb"/>
-                <constraint firstItem="UYl-TE-Gsf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="18.5" id="h88-c1-nBK"/>
-                <constraint firstAttribute="bottom" secondItem="UYl-TE-Gsf" secondAttribute="bottom" constant="18.5" id="qG3-or-7bK"/>
+                <constraint firstItem="waS-0m-Pjl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="18.5" id="fuc-dg-rnj"/>
+                <constraint firstItem="waS-0m-Pjl" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hFN-WV-TQz"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                    <real key="value" value="25"/>
+                    <real key="value" value="20"/>
                 </userDefinedRuntimeAttribute>
                 <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
                     <size key="value" width="5" height="5"/>

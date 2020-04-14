@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class CategoriesViewController: BaseViewController {
 
@@ -16,63 +17,86 @@ class CategoriesViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var deleteCategory: IBDesignableButton!
     @IBOutlet weak var addCategory: IBDesignableButton!
+    @IBOutlet weak var doneButton: IBDesignableButton!
     
     @IBAction func deleteCategoryOnTouchUpInside(_ sender: Any) {
         deleteSelectedCategories()
     }
     
     @IBAction func addCategoryOnTouchUpInside(_ sender: Any) {
-        addNewCategory()
+        Alert.shared.showNewCategoryAlert(on: self, with: NSLocalizedString("New category", comment: "Alert title - New category") , message: nil)
     }
+    
+    @IBAction func doneOnTouchUpInside(_ sender: Any) {
+        completionHandler!(selectedCategories)
+        navigationController?.popViewController(animated: true)
+    }
+    
     
     
 //    MARK: - PROPERTIES AND METHODS
     
-    var dataSource: CategoriesDataSource?
-    
     let refreshControl = UIRefreshControl()
+    
+    var previousViewController: String?
+    var dataSource: CategoriesDataSource?
+    var categoriesManager: CategoriesManager?
+    
+    var completionHandler: ((_: List<Category>) -> Void)?
+    var selectedCategories = List<Category>()
+    var countSelected = 0
+    
+    var gameID: String?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupDataSource()
-        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
-        tableView.refreshControl = refreshControl
-        tableView.isEditing = false
+        setupUIelements()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setDoneButtonBeforeViewAppears()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        setDoneButtonBeforeViewDisappears()
+    }
+    
     func setupDataSource() {
         dataSource = CategoriesDataSource(tableView: self.tableView)
         dataSource?.reload()
     }
     
-    func addNewCategory() {
-        let alertController = UIAlertController(title: "New category", message: nil, preferredStyle: .alert)
+    func setupUIelements() {
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        tableView.refreshControl = refreshControl
         
-        let doneAction = UIAlertAction(title: "Done", style: .default, handler: { action in
-            
-            let categoryName = alertController.textFields?.first?.text?.capitalizingFirstLetter()
-            let newCategory = Category(id: UUID().uuidString, name: categoryName!)
-            
-            DataBaseManager.shared.insertCategory(newCategory: newCategory)
-            
-            self.dataSource?.reload()
-        })
+        tableView.isEditing = false
+    }
+    
+    func setDoneButtonBeforeViewAppears() {
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        alertController.addTextField { (textField) in
-            textField.autocapitalizationType = .sentences
-            textField.borderStyle = .none
-            textField.placeholder = "Enter a name for the category"
-            textField.font = UIFont(name: "AvenirNext-Regular", size: 15)
-            textField.textColor = UIColor(named: "Red App")
+        if previousViewController == "GameSetupViewController" {
+
+            doneButton.isHidden = false
+            tableView.allowsSelectionDuringEditing = true
+            tableView.allowsMultipleSelectionDuringEditing = true
+            
+        } else if previousViewController == "MainMenuViewController" {
+
+            tableView.allowsSelection = false
+            tableView.allowsMultipleSelection = false
         }
-        
-        alertController.addAction(doneAction)
-        alertController.addAction(cancelAction)
-        
-        present(alertController, animated: true, completion: nil)
+    }
+    
+    func setDoneButtonBeforeViewDisappears() {
+        doneButton.isHidden = true
     }
     
     func deleteSelectedCategories() {
@@ -81,15 +105,13 @@ class CategoriesViewController: BaseViewController {
         if let indexPaths = indexPaths {
             for indexPath in indexPaths {
                 guard let categoryToDelete = dataSource?.data![indexPath.row] else { return }
-                DataBaseManager.shared.deleteCategory(category: categoryToDelete)
+                categoriesManager?.deleteCategory(category: categoryToDelete)
             }
         } else {
-            let alertController = UIAlertController(title: "Select a category", message: "You haven't selected any category. Select at least one to  delete!", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-            
-            alertController.addAction(okAction)
-            
-            present(alertController, animated: true, completion: nil)
+            Alert.shared.showBasicAlert(on: self,
+                                        with: NSLocalizedString("Select a category", comment: "Alert Title - Select a category"),
+                                        message: NSLocalizedString("You haven't selected any category. Select at least one to  delete!",
+                                                                   comment: "Alert Message - You haven't selected any category. Select at least one to  delete!"))
         }
         
         dataSource?.reload()

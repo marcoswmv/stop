@@ -14,6 +14,7 @@ class NavigationBarView: UIViewWithXib {
     @IBInspectable var navigationBarTitle: String?
     
     @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var gameLetter: UILabel!
     @IBOutlet weak var backButton: IBDesignableButton!
     @IBOutlet weak var editButton: IBDesignableButton!
     
@@ -25,11 +26,17 @@ class NavigationBarView: UIViewWithXib {
         let categoriesViewController = self.getViewsTopViewController() as! CategoriesViewController
         
         if categoriesViewController.tableView.isEditing {
+            if categoriesViewController.previousViewController == "GameSetupViewController" {
+                categoriesViewController.doneButton.isHidden = !categoriesViewController.doneButton.isHidden ? true : false
+            }
             categoriesViewController.tableView.setEditing(true, animated: true)
             categoriesViewController.deleteCategory.isHidden = true
             categoriesViewController.addCategory.isHidden = true
             categoriesViewController.tableView.isEditing = false
         } else {
+            if categoriesViewController.previousViewController == "GameSetupViewController" {
+                categoriesViewController.doneButton.isHidden = !categoriesViewController.doneButton.isHidden ? true : false
+            }
             categoriesViewController.tableView.setEditing(false, animated: true)
             categoriesViewController.deleteCategory.isHidden = false
             categoriesViewController.addCategory.isHidden = false

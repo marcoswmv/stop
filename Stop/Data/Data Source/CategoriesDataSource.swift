@@ -11,7 +11,7 @@ import RealmSwift
 
 class CategoriesDataSource: BaseDataSource {
     
-    private let manager = DataBaseManager.shared
+    private let manager = CategoriesManager()
     private(set) var data: [Category]?
     
     override func setup() {
@@ -20,15 +20,7 @@ class CategoriesDataSource: BaseDataSource {
     
     override func reload() {
         
-        let result = manager.fetchCategories()
-        var categories = [Category]()
-        
-        for category in result {
-            categories.append(category)
-        }
-        
-        self.data = categories
-        
+        self.data = manager.getCategories()
         self.tableView.reloadData()
     }
     
@@ -69,22 +61,6 @@ class CategoriesDataSource: BaseDataSource {
             
     }
     
-//    MARK: - DELEGATE
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        if let cell = tableView.cellForRow(at: indexPath) {
-            if cell.accessoryType == .checkmark {
-                cell.accessoryType = .none
-            } else {
-                cell.accessoryType = .checkmark
-                
-//                Where the categories are chosen
-                print(data![indexPath.row].name)
-            }
-        }
-    }
+
 
 }

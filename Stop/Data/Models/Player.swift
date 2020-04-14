@@ -9,10 +9,12 @@
 import UIKit
 import RealmSwift
 
-class Player: Object {
+class Player: Object, Codable {
     
     @objc dynamic var id = ""
     @objc dynamic var name = ""
+    @objc dynamic var deviceName = ""
+    
     @objc dynamic var points = 0
     
     required init() {
@@ -23,25 +25,10 @@ class Player: Object {
         return "id"
     }
     
-    convenience init(id: String, name: String) {
+    convenience init(id: String, name: String, deviceName: String) {
         self.init()
         self.id = id
         self.name = name
-        
-        if let points = addPoints() {
-            self.points = points
-        }
-        
+        self.deviceName = deviceName
     }
-    
-    deinit {
-        print("\(self) is being deinitialized")
-    }
-    
-    
-//    TODO: Think about how the points are going to de attributed
-    func addPoints(points: Int? = nil) -> Int? {
-        return points
-    }
-    
 }

@@ -9,10 +9,10 @@
 import UIKit
 import RealmSwift
 
-class Category: Object {
+class Category: Object, Codable {
     
-    @objc dynamic var id: String = ""
-    @objc dynamic var name: String = ""
+    @objc dynamic var id = ""
+    @objc dynamic var name = ""
     
     required init() {
         super.init()
@@ -27,8 +27,4 @@ class Category: Object {
         self.id = id
         self.name = name
     }
-    
-//    deinit {
-//        print("\(self) is being deinitialized")
-//    }
 }

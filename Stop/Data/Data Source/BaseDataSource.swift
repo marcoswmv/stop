@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class BaseDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
+class BaseDataSource: NSObject, UITableViewDataSource {
 
     private(set) var tableView: UITableView
     
@@ -22,7 +22,7 @@ class BaseDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     func setup() {
         self.tableView.dataSource = self
-        self.tableView.delegate = self
+//        self.tableView.delegate = self
     }
     
     func reload() {
@@ -37,7 +37,7 @@ class BaseDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         fatalError("Not implemented")
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        fatalError("Not implemented")
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        fatalError("Not implemented")
+//    }
 }
