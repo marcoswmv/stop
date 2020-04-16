@@ -11,6 +11,12 @@ import UIKit
 class BaseViewController: UIViewController {
 
     
+    
+    // MARK: - UI
+    func displayLoading(with message: String = "", loading: Bool, color: UIColor = .white) {
+        UIApplication.displayLoading(with: message, loading: loading, color: color)
+    }
+    
     // MARK: - Instantiate
 
     /// Sotryboard name. Used in instantiate

@@ -33,7 +33,7 @@ extension GameSetupViewController: UIPickerViewDataSource {
         
         label.textColor = UIColor(named: "Label Gray App")
         label.textAlignment = .center
-        label.font = UIFont(name: "AvenirNext-Regular ", size: 20)
+        label.font = UIFont(name: "AvenirNext-Regular", size: 20)
         
         label.text = letters[row]
         

@@ -6,4 +6,5 @@ target 'Stop' do
 
   # Pods for Stop
   pod 'RealmSwift'
+  pod 'NVActivityIndicatorView'
 end

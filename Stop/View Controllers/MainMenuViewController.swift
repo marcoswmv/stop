@@ -9,105 +9,52 @@
 import UIKit
 import MultipeerConnectivity
 
+enum TypeOfPlayer: String {
+    case Host = "HostPlayer"
+    case Invited = "InvitedPlayer"
+}
+
 class MainMenuViewController: BaseViewController {
 
     @IBOutlet weak var startNewGame: UIButton!
 
     @IBAction func startNewGameOnTouchUpInside(_ sender: Any) {
-        showConnectionPrompt()
-        messageToSend = "Sending a message from game host"
+        Alert.shared.showInvitationAlert(on: self,
+                                         with: NSLocalizedString("Invite players",
+                                                                 comment: "Invite players Alert Title - Invite players"),
+                                         message: nil)
     }
     
     @IBAction func showScoreboardOnTouchUpInside(_ sender: Any) {
-        
+        print("Showing scorboard...")
     }
     
     @IBAction func showCategoriesOnTouchUpInside(_ sender: Any) {
+        let categoriesViewController = CategoriesViewController.instantiate() as! CategoriesViewController
+        categoriesViewController.previousViewController = self.viewControllerName
+        navigationController?.pushViewController(categoriesViewController, animated: true)
     }
     
-    deinit {
-        print("\(self) is being deinitialized")
+    
+    
+//    MARK: - PROPERTIES AND METHODS
+    
+    var appDelegate: AppDelegate {
+        return UIApplication.shared.delegate as! AppDelegate
     }
     
-    var peerID: MCPeerID!
-    var mcSession: MCSession!
-    var mcNearbyServiceAdvertiser: MCNearbyServiceAdvertiser?
-    let serviceType = "mwmv-stop"
-    
-    var messageToSend: String?
+    var viewControllerName = "MainMenuViewController"
+    var gameManager = GameManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupConectivitySession()
-        
+        appDelegate.connectionManager.setupSession()
+        appDelegate.connectionManager.startSelfAdvertising(advertise: true, viewController: self)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        sendDataToPeer()
+    func invitePlayers(action: UIAlertAction!) {
+        appDelegate.connectionManager.setupNearbyServiceBrowser(browse: true, viewController: self)
     }
-    
-    func setupConectivitySession() {
-        peerID = MCPeerID(displayName: UIDevice.current.name)
-        mcSession = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .required)
-        mcSession.delegate = self
-    }
-
-//    TODO: Method to send data
-    func sendDataToPeer() {
-        
-        if mcSession.connectedPeers.count > 0 {
-            
-            if let message = messageToSend {
-                
-                let data = Data(message.utf8)
-                
-                do {
-                    
-                    try mcSession.send(data, toPeers: mcSession.connectedPeers, with: .reliable)
-                    
-                } catch {
-                    
-//                    TODO: Implement a helper class "Alert
-                    
-                    let ac = UIAlertController(title: "Send error", message: error.localizedDescription, preferredStyle: .alert)
-                    ac.addAction(UIAlertAction(title: "OK", style: .default))
-                    present(ac, animated: true)
-                }
-            }
-        }
-    }
-    
-    func showConnectionPrompt() {
-        let alertController = UIAlertController(title: "Connect to other players", message: nil, preferredStyle: .alert)
-        
-        let hostSessionAction = UIAlertAction(title: "Host game", style: .default, handler: startHostingSession(action:))
-        let joinSessionAction = UIAlertAction(title: "Join the game",   style: .default, handler: joinSession(action:))
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
-        
-        alertController.addAction(hostSessionAction)
-        alertController.addAction(joinSessionAction)
-        alertController.addAction(cancel)
-        
-        present(alertController, animated: true, completion: nil)
-    }
-    
-    func startHostingSession(action: UIAlertAction!) {
-        mcNearbyServiceAdvertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: nil, serviceType: serviceType)
-        mcNearbyServiceAdvertiser?.delegate = self
-        mcNearbyServiceAdvertiser?.startAdvertisingPeer()
-    }
-
-    func joinSession(action: UIAlertAction!) {
-        let mcBrowser = MCBrowserViewController(serviceType: serviceType, session: mcSession)
-        
-        mcBrowser.minimumNumberOfPeers = 2
-        mcBrowser.delegate = self
-        
-        present(mcBrowser, animated: true)
-    }
-
 }
 
