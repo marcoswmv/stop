@@ -15,8 +15,6 @@ class Game: Object, Codable {
     @objc dynamic var id: String? = nil
     @objc dynamic var letter: String? = nil
     
-    @objc dynamic var start = false
-    
     var players = List<Player>()
     var categories = List<Category>()
     
@@ -47,7 +45,6 @@ class Game: Object, Codable {
         case letter
         case winner
         case total
-        case start
         case additionalInfo
     }
     
@@ -65,8 +62,6 @@ class Game: Object, Codable {
         winner = try values.decode(String.self, forKey: .letter)
         total = try values.decode(String.self, forKey: .letter)
         
-        start = try values.decode(Bool.self, forKey: .start)
-        
         let collections = try values.nestedContainer(keyedBy: AdditionalInfoKeys.self, forKey: .additionalInfo)
         
         players = try collections.decode(List<Player>.self, forKey: .players)
@@ -80,8 +75,6 @@ class Game: Object, Codable {
         try values.encode(letter, forKey: .letter)
         try values.encode(winner, forKey: .winner)
         try values.encode(total, forKey: .total)
-        
-        try values.encode(start, forKey: .start)
         
         var collections = values.nestedContainer(keyedBy: AdditionalInfoKeys.self, forKey: .additionalInfo)
         try collections.encode(players, forKey: .players)

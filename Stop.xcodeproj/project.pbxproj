@@ -21,6 +21,9 @@
 		F71645ED243ECFBE00A8673E /* GameSetupVC+UIPickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71645EC243ECFBE00A8673E /* GameSetupVC+UIPickerViewDelegate.swift */; };
 		F71645EF243ECFEF00A8673E /* GameSetupVC+UIPickerViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71645EE243ECFEF00A8673E /* GameSetupVC+UIPickerViewDataSource.swift */; };
 		F71645F2243EDE0B00A8673E /* IBDesignableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71645F1243EDE0B00A8673E /* IBDesignableLabel.swift */; };
+		F725DD322449057100172823 /* ScoreboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F725DD312449057100172823 /* ScoreboardViewController.swift */; };
+		F725DD34244908D100172823 /* ScoreboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F725DD33244908D100172823 /* ScoreboardTableViewCell.swift */; };
+		F725DD3624490A1900172823 /* ScoreboardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F725DD3524490A1900172823 /* ScoreboardDataSource.swift */; };
 		F73ECA1A2439F8B1003C320C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73ECA192439F8B1003C320C /* AppDelegate.swift */; };
 		F73ECA1E2439F8B1003C320C /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73ECA1D2439F8B1003C320C /* MainMenuViewController.swift */; };
 		F73ECA212439F8B1003C320C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F73ECA1F2439F8B1003C320C /* Main.storyboard */; };
@@ -75,6 +78,9 @@
 		F71645EC243ECFBE00A8673E /* GameSetupVC+UIPickerViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameSetupVC+UIPickerViewDelegate.swift"; sourceTree = "<group>"; };
 		F71645EE243ECFEF00A8673E /* GameSetupVC+UIPickerViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameSetupVC+UIPickerViewDataSource.swift"; sourceTree = "<group>"; };
 		F71645F1243EDE0B00A8673E /* IBDesignableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBDesignableLabel.swift; sourceTree = "<group>"; };
+		F725DD312449057100172823 /* ScoreboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardViewController.swift; sourceTree = "<group>"; };
+		F725DD33244908D100172823 /* ScoreboardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardTableViewCell.swift; sourceTree = "<group>"; };
+		F725DD3524490A1900172823 /* ScoreboardDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardDataSource.swift; sourceTree = "<group>"; };
 		F73ECA162439F8B1003C320C /* Stop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F73ECA192439F8B1003C320C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F73ECA1D2439F8B1003C320C /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
@@ -222,6 +228,7 @@
 				F71645DE243D0E3E00A8673E /* GameSetupViewController.swift */,
 				F7A3A3B824400F4C00F17326 /* GameViewController.swift */,
 				F73ECA1D2439F8B1003C320C /* MainMenuViewController.swift */,
+				F725DD312449057100172823 /* ScoreboardViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -319,8 +326,9 @@
 			isa = PBXGroup;
 			children = (
 				F7A3A3AD243FCD5C00F17326 /* BaseTableViewCell.swift */,
-				F7A3A3BA244015A200F17326 /* GameCategoryTableViewCell.swift */,
 				F7A3A39F243FBDFC00F17326 /* CategoryTableViewCell.swift */,
+				F7A3A3BA244015A200F17326 /* GameCategoryTableViewCell.swift */,
+				F725DD33244908D100172823 /* ScoreboardTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -331,6 +339,7 @@
 				F7A3A3AB243FC68000F17326 /* BaseDataSource.swift */,
 				F7A3A3A9243FC5DF00F17326 /* CategoriesDataSource.swift */,
 				F7A3A3C0244035B200F17326 /* GameCategoriesDataSource.swift */,
+				F725DD3524490A1900172823 /* ScoreboardDataSource.swift */,
 			);
 			path = "Data Source";
 			sourceTree = "<group>";
@@ -458,6 +467,7 @@
 				F71645E7243DE22700A8673E /* BaseViewController+UITextFieldDelegate.swift in Sources */,
 				F7C799DA2440C2960005DBFD /* GameManager.swift in Sources */,
 				F7C799DC244235180005DBFD /* UIApplication+Loading.swift in Sources */,
+				F725DD3624490A1900172823 /* ScoreboardDataSource.swift in Sources */,
 				F71645E1243D1C2400A8673E /* BaseViewController.swift in Sources */,
 				F7A3A3C1244035B200F17326 /* GameCategoriesDataSource.swift in Sources */,
 				F7C799E22443B9490005DBFD /* ConnectionManager.swift in Sources */,
@@ -473,6 +483,8 @@
 				F73ECA1A2439F8B1003C320C /* AppDelegate.swift in Sources */,
 				F7A3A3B924400F4C00F17326 /* GameViewController.swift in Sources */,
 				F71645DB243D015F00A8673E /* IBDesignableView.swift in Sources */,
+				F725DD322449057100172823 /* ScoreboardViewController.swift in Sources */,
+				F725DD34244908D100172823 /* ScoreboardTableViewCell.swift in Sources */,
 				F71645E9243DE7B600A8673E /* MainMenuVC+MCNearbyServiceAdvertiserDelegate.swift in Sources */,
 				F73ECA3B243A05E6003C320C /* UIFont+Style.swift in Sources */,
 				F71645D7243CFD4800A8673E /* NavigationBarView.swift in Sources */,

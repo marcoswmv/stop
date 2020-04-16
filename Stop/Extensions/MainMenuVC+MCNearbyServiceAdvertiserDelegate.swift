@@ -32,7 +32,6 @@ extension MainMenuViewController: MCNearbyServiceAdvertiserDelegate {
                                             }
                                             
                                             gameSetupViewController.connectionManager = self?.appDelegate.connectionManager
-                                            gameSetupViewController.session = mcSession
                                             gameSetupViewController.typeOfPlayer = .Invited
                                             
                                             self?.navigationController?.pushViewController(gameSetupViewController, animated: true)

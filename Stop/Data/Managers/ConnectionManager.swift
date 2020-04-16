@@ -19,8 +19,7 @@ class ConnectionManager: NSObject {
     var mcNearbyServiceBrowser: MCNearbyServiceBrowser!
     var mcNearbyServiceAdvertiser: MCNearbyServiceAdvertiser!
     
-    var dataToReceive: Game?
-    var notification = ""
+    var receivedGame: Game?
     
     deinit {
         print("Stopping and deallocating everything...")
@@ -58,7 +57,7 @@ class ConnectionManager: NSObject {
             do {
                 var data = Data()
                 
-                if dataDictionary.keys.contains("game"), dataDictionary.keys.contains("isLoading") {
+                if dataDictionary.keys.contains("game"), dataDictionary.keys.contains("isReady") {
 
                     var newDict = dataDictionary
                     let game = newDict["game"] as! Game
@@ -85,7 +84,7 @@ class ConnectionManager: NSObject {
     }
     
     func getGameID(dictionary: [String: Any]?) -> String? {
-        guard let dataDictionary = dataToReceive else { return nil }
+        guard let dataDictionary = receivedGame else { return nil }
         let id = dataDictionary["gameID"] as? String
         return id
     }
@@ -102,9 +101,7 @@ class ConnectionManager: NSObject {
     func convertDictionaryToData(dictionary: [String: Any]) -> Data? {
         do {
             // here "jsonData" is the dictionary encoded in JSON data
-            let jsonData = try JSONSerialization.data(withJSONObject: dictionary, options: .prettyPrinted)
-            return jsonData
-            
+            return try JSONSerialization.data(withJSONObject: dictionary, options: .prettyPrinted)
         } catch {
             print(error.localizedDescription)
         }
@@ -121,17 +118,12 @@ extension ConnectionManager: MCSessionDelegate {
         DispatchQueue.main.async { [weak self] in
             let dict = self?.convertDataToDictionary(data: data)
             
-            if (dict?.keys.contains("stop"))!, (dict?.keys.contains("notification"))! {
-                
-//                TODO: THE FLAG TO STOP THE GAME
-                print("Dictionary: ", dict!)
-                
-            } else {
+            if (dict?.keys.contains("game"))!, (dict?.keys.contains("isReady"))! {
                 
                 do {
                     
                     let gameSetupViewController = UIApplication.getTopViewController() as! GameSetupViewController
-                    let notification = dict!["isLoading"] as! Bool
+                    let isReady = dict!["isReady"] as! Bool
                     
                     let gameAsString = dict!["game"] as! String
                     let gameToDecode = Data(gameAsString.utf8)
@@ -139,10 +131,15 @@ extension ConnectionManager: MCSessionDelegate {
                     let jsonDecoder = JSONDecoder()
                     let game = try jsonDecoder.decode(Game.self, from: gameToDecode)
                     
-                    gameSetupViewController.completionHandler!(notification, game)
+                    self?.receivedGame = game
+                    gameSetupViewController.completionHandler?(isReady, game)
                 } catch {
                     Alert.shared.showReceptionError(on: UIApplication.getTopViewController()!, message: error.localizedDescription)
                 }
+            } else if (dict?.keys.contains("stop"))! {
+                            
+//                TODO: THE FLAG TO STOP THE GAME
+                print("Dictionary: ", dict!)
             }
         }
     }

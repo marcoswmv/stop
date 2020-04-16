@@ -32,20 +32,15 @@ class GameSetupViewController: BaseViewController {
     }
     
     @IBAction func startGameOnTouchUpInside(_ sender: Any) {
+        isReady = true
         setupNewGame()
     }
     
     
-//    WHERE I STOPPED: USE OBSERVERS AND NOTIFICATIONS TO ENABLE HOST TO SHARE IT'S GAME SETUP WITH THE OTHER PLAYERS AND START THE  GAME DISABLING THE RED LOADING SCREEN
-    
-    
-    
-//    MARK: - PROPERTIES AND METHODS
+//    MARK: - PROPERTIES
     
     var connectionManager: ConnectionManager!
-    var session: MCSession!
     
-//    var isLoading = false
     var viewControllerName = "GameSetupViewController"
     
     let letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I",
@@ -60,22 +55,19 @@ class GameSetupViewController: BaseViewController {
     var newGameID: String?
     var newPlayer: Player?
     
-    var completionHandler: ((Bool, Game) -> Void)?
+    var completionHandler: ((Bool, Game?) -> Void)?
     
+    var isReady = false
+    
+    
+//    MARK: - METHODS
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupUIAppearance()
         createLetterPicker()
-        
-        completionHandler = { [weak self] flag, game in
-            self?.displayLoading(loading: flag)
-            
-            let gameViewController = GameViewController.instantiate() as! GameViewController
-            gameViewController.game = game
-            self?.navigationController?.pushViewController(gameViewController, animated: true)
-        }
+        startGameIfReady()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -87,6 +79,39 @@ class GameSetupViewController: BaseViewController {
         } else {
             chooseLetterCell.isHidden = true
             chooseCategoriesButton.isHidden = true
+        }
+    }
+    
+    
+    func startGameIfReady() {            
+        completionHandler = { [weak self] isReady, game in
+        
+            if self!.isReady {
+                print("In general the player is ready") // checked
+                
+                if isReady {
+                    print("All players are ready - so start game") //  Not working as expected, Should switch self to the game, but is switching only the other players
+                    
+//                        let data = ["game": game!, "isReady": true] as [String : Any]
+//                        self?.connectionManager.sendData(dataDictionary: data)
+                    
+                    let stopLoading = !isReady
+                    self?.displayLoading(loading: stopLoading)
+
+                    let gameViewController = GameViewController.instantiate() as! GameViewController
+                    gameViewController.game = game
+                    self?.navigationController?.pushViewController(gameViewController, animated: true)
+
+                } else {
+                    print("Other players are not ready but I am so display  loading")
+                    let startLoading = !isReady
+                    self?.displayLoading(with: "Some player(s) is(are) not ready\nbut it won't take too long to start the game.\nPlease, wait a little bit!", loading: startLoading)
+                }
+            } else {
+                print("Other player is not ready, so display loading for him")  // checked
+                let data = ["game": game!, "isReady": false] as [String : Any]
+                self?.connectionManager.sendData(dataDictionary: data)
+            }
         }
     }
     
@@ -124,17 +149,30 @@ class GameSetupViewController: BaseViewController {
                                           player: player)
             
             let game = gameManager.getGame(with: gameID)
-            let data = ["game": game, "isLoading": false] as [String : Any]     // NOTE: To stop the game im going to send a data object ["stop": true]
-            
+            let data = ["game": game, "isReady": true] as [String : Any]
+//            print("Game from Host: ", game)
             connectionManager.sendData(dataDictionary: data)
             
-            let gameViewController = GameViewController.instantiate() as! GameViewController
-            gameViewController.game = game
-            navigationController?.pushViewController(gameViewController, animated: true)
         } else {
-            // Invited player joining the game
-            gameManager.joinGame(gameID: gameID, player: player)
-            displayLoading(with: "The Host player is setting the game. It won't take to long", loading: true)
+            
+            var data = [String : Any]()
+            
+            if let receivedGame = connectionManager.receivedGame {
+                receivedGame.players.append(player)
+                gameManager.updateGameWithDataFromHost(updatedGame: receivedGame)
+                
+                let game = gameManager.getGame(with: receivedGame.id!)
+                
+                data = ["game": game, "isReady": true] as [String : Any]
+            } else {
+                gameManager.joinGame(gameID: gameID, player: player)
+                let game = gameManager.getGame(with: gameID)
+                
+                data = ["game": game, "isReady": true] as [String : Any]
+            }
+            
+//            print("Game from another players: ", data)
+            connectionManager.sendData(dataDictionary: data)
         }
     }
     

@@ -11,8 +11,8 @@ import RealmSwift
 
 class Category: Object, Codable {
     
-    @objc dynamic var id = ""
-    @objc dynamic var name = ""
+    @objc dynamic var id: String? = nil
+    @objc dynamic var name: String? = nil
     
     required init() {
         super.init()
