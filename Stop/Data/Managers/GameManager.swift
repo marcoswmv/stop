@@ -36,20 +36,29 @@ class GameManager {
             newLetter = letter
         }
         
+        let randomCategories = setRandomCategories()
+        
         let game = Game()
         game.id = gameID
         game.letter = newLetter
         game.start = start
-        
-        if let categories = categories {
-            for category in categories {
-                game.categories.append(category)
-            }
-        }
-        
+        game.categories.append(objectsIn: randomCategories)
         game.players.append(player)
         
         databaseManager.updateGame(newGame: game)
+    }
+    
+    func setRandomCategories() -> [Category] {
+        let randomCategory = databaseManager.fetchCategories().randomElement()!
+        var categoriesToReturn = [Category]()
+        var count = 0
+        
+        while (count < 8) {
+            categoriesToReturn.append(randomCategory)
+            count += 1
+        }
+        
+        return categoriesToReturn
     }
     
     func joinGame(gameID: String, player: Player) {
@@ -80,41 +89,6 @@ class GameManager {
         return databaseManager.fetchGame(with: id)
     }
     
-    
-//    func setLetterForGame(gameID: String, letter: String = "", letters: [String]? = nil) {
-//        var newLetter = letter
-//
-//        if letter == "" {
-//            guard let letter = letters?.randomElement() else { return }
-//            newLetter = letter
-//        }
-//
-//        let game = Game()
-//        game.id = gameID
-//        game.letter = newLetter
-//
-//        databaseManager.updateGame(newGame: game)
-//    }
-//
-//    func setCategoriesForGame(gameID: String, categories: List<Category>) {
-//        let game = Game()
-//        game.id = gameID
-//
-//        for category in categories {
-//            game.categories.append(category)
-//        }
-//
-//        databaseManager.updateGame(newGame: game)
-//    }
-//
-//    func joinGame(gameID: String, player: Player) {
-//        let game = Game()
-//        game.id = gameID
-//
-//        game.players.append(player)
-//
-//        databaseManager.updateGame(newGame: game)
-//    }
     
     func getAnswers(categoryName: String, word: String, playerName: String) {
 //        let game =

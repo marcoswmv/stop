@@ -36,6 +36,8 @@ class GameSetupViewController: BaseViewController {
     }
     
     
+//    WHERE I STOPPED: USE OBSERVERS AND NOTIFICATIONS TO ENABLE HOST TO SHARE IT'S GAME SETUP WITH THE OTHER PLAYERS AND START THE  GAME DISABLING THE RED LOADING SCREEN
+    
     
     
 //    MARK: - PROPERTIES AND METHODS
@@ -43,7 +45,7 @@ class GameSetupViewController: BaseViewController {
     var connectionManager: ConnectionManager!
     var session: MCSession!
     
-    var isLoading = false
+//    var isLoading = false
     var viewControllerName = "GameSetupViewController"
     
     let letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I",
@@ -58,18 +60,28 @@ class GameSetupViewController: BaseViewController {
     var newGameID: String?
     var newPlayer: Player?
     
+    var completionHandler: ((Bool, Game) -> Void)?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupUIAppearance()
         createLetterPicker()
+        
+        completionHandler = { [weak self] flag, game in
+            self?.displayLoading(loading: flag)
+            
+            let gameViewController = GameViewController.instantiate() as! GameViewController
+            gameViewController.game = game
+            self?.navigationController?.pushViewController(gameViewController, animated: true)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if typeOfPlayer == TypeOfPlayer.Host {
+        if typeOfPlayer == .Host {
             chooseLetterCell.isHidden = false
             chooseCategoriesButton.isHidden = false
         } else {
@@ -100,8 +112,6 @@ class GameSetupViewController: BaseViewController {
         guard let newPlayer = newPlayer else { return }
         
         checkTypeOfPlayer(type: typeOfPlayer!, gameID: gameID, player: newPlayer)
-        
-//        Alert.shared.showBasicAlert(on: self, with: "DATA", message: gameManager.getGame(with: gameID).description)
     }
     
     func checkTypeOfPlayer(type: TypeOfPlayer, gameID: String, player: Player) {
@@ -114,27 +124,17 @@ class GameSetupViewController: BaseViewController {
                                           player: player)
             
             let game = gameManager.getGame(with: gameID)
-            let data = ["game": game]     // NOTE: To stop the game im going to send a data object ["flag": true]
+            let data = ["game": game, "isLoading": false] as [String : Any]     // NOTE: To stop the game im going to send a data object ["stop": true]
             
             connectionManager.sendData(dataDictionary: data)
             
-//            let gameViewController = GameViewController.instantiate() as! GameViewController
-//            navigationController?.pushViewController(gameViewController, animated: true)
+            let gameViewController = GameViewController.instantiate() as! GameViewController
+            gameViewController.game = game
+            navigationController?.pushViewController(gameViewController, animated: true)
         } else {
             // Invited player joining the game
             gameManager.joinGame(gameID: gameID, player: player)
-            
-            isLoading = true
-            
-            if isLoading {
-                displayLoading(with: "The Host player is setting the game. It won't take to long", loading: isLoading)
-            } else {
-                displayLoading(with: "The Host player is setting the game. It won't take to long", loading: isLoading)
-                
-                
-//                let gameViewController = GameViewController.instantiate() as! GameViewController
-//                navigationController?.pushViewController(gameViewController, animated: true)
-            }
+            displayLoading(with: "The Host player is setting the game. It won't take to long", loading: true)
         }
     }
     
@@ -167,5 +167,4 @@ class GameSetupViewController: BaseViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
-
 }

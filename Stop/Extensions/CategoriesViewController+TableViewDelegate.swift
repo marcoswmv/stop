@@ -14,7 +14,7 @@ extension CategoriesViewController: UITableViewDelegate {
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if countSelected < 15 {
+        if countSelected < 8 {
             if let cell = tableView.cellForRow(at: indexPath) {
                 cell.accessoryType = cell.accessoryType == .checkmark ? .none : .checkmark
             }
@@ -35,7 +35,7 @@ extension CategoriesViewController: UITableViewDelegate {
         } else {
             Alert.shared.showBasicAlert(on: UIApplication.getTopViewController()!,
                                         with: NSLocalizedString("Selection Limit", comment: "Alert title - Selection Limit"),
-                                        message: NSLocalizedString("You've reached the allowed categories selection limit of 15. Please unselect some categories if you wish to select anothers.",
+                                        message: NSLocalizedString("You've reached the allowed categories selection limit of 8. Please unselect some categories if you wish to select anothers.",
                                                                    comment: "Alert message - You've reached the allowed categories selection limit of 15. Please unselect some categories if you wish to select anothers."))
         }
     }

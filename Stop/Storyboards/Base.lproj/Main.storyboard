@@ -198,7 +198,7 @@
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j9A-9P-BCm">
                                                                 <rect key="frame" x="18" y="18" width="295" height="147.66666666666666"/>
-                                                                <string key="text">NOTE: Player name is mandatory! If you want a random letter and random categories just leave the fields empty and click “START”. Otherwise, you may select up to 15 categories.</string>
+                                                                <string key="text">NOTE: Player name is mandatory! If you want a random letter and random categories just leave the fields empty and click “START”. Otherwise, you may select up to 8 categories.</string>
                                                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
                                                                 <color key="textColor" name="Red App"/>
                                                                 <nil key="highlightedColor"/>

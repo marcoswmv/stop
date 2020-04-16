@@ -20,6 +20,7 @@ class ConnectionManager: NSObject {
     var mcNearbyServiceAdvertiser: MCNearbyServiceAdvertiser!
     
     var dataToReceive: Game?
+    var notification = ""
     
     deinit {
         print("Stopping and deallocating everything...")
@@ -57,19 +58,24 @@ class ConnectionManager: NSObject {
             do {
                 var data = Data()
                 
-                if dataDictionary.keys.contains("game") {
+                if dataDictionary.keys.contains("game"), dataDictionary.keys.contains("isLoading") {
+
+                    var newDict = dataDictionary
+                    let game = newDict["game"] as! Game
                     
-                    let game = dataDictionary["game"] as! Game
                     let jsonEncoder = JSONEncoder()
+                    let encodedGame = try jsonEncoder.encode(game)
+                    let gameAsString = String(decoding: encodedGame, as: UTF8.self)
                     
-                    data = try jsonEncoder.encode(game)
+                    newDict["game"] = gameAsString
                     
-                } else if dataDictionary.keys.contains("stopTheGame") {
+                    data = convertDictionaryToData(dictionary: newDict)!
                     
+                } else if dataDictionary.keys.contains("stop") {
+//                    Adapt this part of the condition for the STOP
                     data = convertDictionaryToData(dictionary: dataDictionary)!
                 }
                 
-                print("Sending data: ", data)
                 try mcSession.send(data, toPeers: mcSession.connectedPeers, with: .reliable)
                 
             } catch {
@@ -111,35 +117,35 @@ class ConnectionManager: NSObject {
 // MARK: - SESSION DELEGATE
 extension ConnectionManager: MCSessionDelegate {
     
-    
-//    TODO: Adapt it to whatever I need it to do
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         DispatchQueue.main.async { [weak self] in
-//            TODO: Use received data to update or do something with UI
-            
             let dict = self?.convertDataToDictionary(data: data)
             
-            if (dict?.keys.contains("flag"))! {
+            if (dict?.keys.contains("stop"))!, (dict?.keys.contains("notification"))! {
                 
-//                MARK: -THE FLAG TO STOP THE GAME
+//                TODO: THE FLAG TO STOP THE GAME
                 print("Dictionary: ", dict!)
                 
             } else {
                 
                 do {
-                    let jsonDecoder = JSONDecoder()
-                    let game = try jsonDecoder.decode(Game.self, from: data)
                     
-                    self?.dataToReceive = game
+                    let gameSetupViewController = UIApplication.getTopViewController() as! GameSetupViewController
+                    let notification = dict!["isLoading"] as! Bool
+                    
+                    let gameAsString = dict!["game"] as! String
+                    let gameToDecode = Data(gameAsString.utf8)
+                    
+                    let jsonDecoder = JSONDecoder()
+                    let game = try jsonDecoder.decode(Game.self, from: gameToDecode)
+                    
+                    gameSetupViewController.completionHandler!(notification, game)
                 } catch {
                     Alert.shared.showReceptionError(on: UIApplication.getTopViewController()!, message: error.localizedDescription)
                 }
             }
-            
-            
         }
     }
-    
     
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
     }
