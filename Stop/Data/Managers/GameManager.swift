@@ -28,7 +28,7 @@ class GameManager {
         return newPlayer
     }
     
-    func setGameParameters(gameID: String, start: Bool = false, letter: String = "", letters: [String]? = nil, categories: List<Category>? = nil, player: Player) {
+    func setGameParameters(gameID: String, letter: String = "", letters: [String]? = nil, categories: List<Category>? = nil, player: Player) {
         var newLetter = letter
         
         if letter == "" {
@@ -36,26 +36,34 @@ class GameManager {
             newLetter = letter
         }
         
-        let randomCategories = setRandomCategories()
+        var categoriesToUse = [Category]()
+        
+        if categories!.isEmpty {
+            categoriesToUse = setRandomCategories()
+        } else {
+            for category in categories! {
+                categoriesToUse.append(category)
+            }
+        }
         
         let game = Game()
         game.id = gameID
         game.letter = newLetter
-        game.start = start
-        game.categories.append(objectsIn: randomCategories)
+        game.categories.append(objectsIn: categoriesToUse)
         game.players.append(player)
         
         databaseManager.updateGame(newGame: game)
     }
     
     func setRandomCategories() -> [Category] {
-        let randomCategory = databaseManager.fetchCategories().randomElement()!
+        let categories = databaseManager.fetchCategories()
         var categoriesToReturn = [Category]()
-        var count = 0
         
-        while (count < 8) {
-            categoriesToReturn.append(randomCategory)
-            count += 1
+        while (categoriesToReturn.count < 8) {
+            let randomCategory = categories.randomElement()!
+            if !categoriesToReturn.contains(randomCategory) {
+                categoriesToReturn.append(randomCategory)
+            }
         }
         
         return categoriesToReturn
@@ -64,44 +72,45 @@ class GameManager {
     func joinGame(gameID: String, player: Player) {
         let game = Game()
         game.id = gameID
-        game.players.append(player)
+        
+        let realm = try! Realm()
+        try! realm.write({
+            game.players.append(player)
+        })
         
         databaseManager.updateGame(newGame: game)
     }
     
-    func updateGameWithDataFromHost(updatedGame: Game) {
+    func updateGameWithDataFromHost(updatedGame: Game, player: Player? = nil) -> Game {
         let game = Game()
-        if game.id == updatedGame.id {
-            game.id = updatedGame.id
-            game.letter = updatedGame.letter
-            game.players.append(objectsIn: updatedGame.players)
-            game.categories = updatedGame.categories
-            game.start = updatedGame.start
-            
-            databaseManager.updateGame(newGame: game)
-        } else {
-            
-            print("Different games!")
+        game.id = updatedGame.id
+        game.letter = updatedGame.letter
+        game.players.append(objectsIn: updatedGame.players)
+        game.categories = updatedGame.categories
+        
+        if let player = player {
+            game.players.append(player)
         }
+        
+        databaseManager.updateGame(newGame: game)
+        return game
+    }
+    
+    func getPlayers() -> [Player] {
+        return databaseManager.fetchPlayers()
     }
     
     func getGame(with id: String) -> Game {
         return databaseManager.fetchGame(with: id)
     }
     
-    
-    func getAnswers(categoryName: String, word: String, playerName: String) {
-//        let game =
-//        let categoryID = getCategoryID(name: categoryName)
-//        retrieveAnswers(categoryID: categoryID, word: word, playerName: playerName)
-//    }
-//
-//    func getGame(id: String) -> Game {
-//        let games = dataBase.fetchGames()
-//        let result = Game()
-//
-//        if games.contains(Game(id: id))
+    func getGameCategories(gameID: String) -> [Category] {
+        let categoriesFromDatabase = getGame(with: gameID).categories
+        var categories = [Category]()
         
+        categories.append(contentsOf: categoriesFromDatabase)
+        
+        return categories
     }
     
     func getCategoryID(name: String) -> String {
@@ -110,7 +119,7 @@ class GameManager {
         
         for category in categories {
             if category.name == name {
-                index = category.id
+                index = category.id!
             }
         }
         

@@ -92,7 +92,7 @@ class DataBaseManager {
         })
     }
     
-    func fetchPlayer() -> [Player] {
+    func fetchPlayers() -> [Player] {
         let realm = try! Realm()
         let result = realm.objects(Player.self)
         

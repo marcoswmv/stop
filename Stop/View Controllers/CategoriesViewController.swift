@@ -46,6 +46,8 @@ class CategoriesViewController: BaseViewController {
     var selectedCategories = List<Category>()
     var countSelected = 0
     
+    var selectedCell: CategoryTableViewCell?
+    
     var gameID: String?
     
     
@@ -110,7 +112,7 @@ class CategoriesViewController: BaseViewController {
         } else {
             Alert.shared.showBasicAlert(on: self,
                                         with: NSLocalizedString("Select a category", comment: "Alert Title - Select a category"),
-                                        message: NSLocalizedString("You haven't selected any category. Select at least one to  delete!",
+                                        message: NSLocalizedString("You haven't selected any category. Select at least one to delete!",
                                                                    comment: "Alert Message - You haven't selected any category. Select at least one to  delete!"))
         }
         

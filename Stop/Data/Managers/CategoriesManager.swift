@@ -27,9 +27,10 @@ class CategoriesManager {
                                  Category(id: UUID().uuidString, name: "My mother is"),
                                  Category(id: UUID().uuidString, name: "Artist/Singer/Rapper"),
                                  Category(id: UUID().uuidString, name: "Gadget") ]
-        
-        for category in defaultCategories {
-            databaseManager.createCategory(newCategory: category)
+        if databaseManager.fetchCategories().isEmpty {
+            for category in defaultCategories {
+                databaseManager.updateCategory(newCategory: category)
+            }
         }
     }
     

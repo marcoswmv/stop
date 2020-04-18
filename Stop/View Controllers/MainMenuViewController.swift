@@ -26,7 +26,9 @@ class MainMenuViewController: BaseViewController {
     }
     
     @IBAction func showScoreboardOnTouchUpInside(_ sender: Any) {
-        print("Showing scorboard...")
+        let scoreboardViewController = ScoreboardViewController.instantiate() as! ScoreboardViewController
+        
+        navigationController?.pushViewController(scoreboardViewController, animated: true)
     }
     
     @IBAction func showCategoriesOnTouchUpInside(_ sender: Any) {

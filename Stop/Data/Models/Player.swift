@@ -11,9 +11,9 @@ import RealmSwift
 
 class Player: Object, Codable {
     
-    @objc dynamic var id = ""
-    @objc dynamic var name = ""
-    @objc dynamic var deviceName = ""
+    @objc dynamic var id: String? = nil
+    @objc dynamic var name: String? = nil
+    @objc dynamic var deviceName: String? = nil
     
     @objc dynamic var points = 0
     

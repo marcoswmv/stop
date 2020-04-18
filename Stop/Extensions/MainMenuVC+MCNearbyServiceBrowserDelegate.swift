@@ -25,7 +25,6 @@ extension MainMenuViewController: MCNearbyServiceBrowserDelegate {
 
         gameSetupViewController.newGameID = newGameID
         gameSetupViewController.connectionManager = appDelegate.connectionManager
-        gameSetupViewController.session = appDelegate.connectionManager.mcSession
         gameSetupViewController.typeOfPlayer = .Host
 
         navigationController?.pushViewController(gameSetupViewController, animated: true)
