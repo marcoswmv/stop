@@ -36,12 +36,20 @@ class GameManager {
             newLetter = letter
         }
         
-        let randomCategories = setRandomCategories()
+        var categoriesToUse = [Category]()
+        
+        if categories!.isEmpty {
+            categoriesToUse = setRandomCategories()
+        } else {
+            for category in categories! {
+                categoriesToUse.append(category)
+            }
+        }
         
         let game = Game()
         game.id = gameID
         game.letter = newLetter
-        game.categories.append(objectsIn: randomCategories)
+        game.categories.append(objectsIn: categoriesToUse)
         game.players.append(player)
         
         databaseManager.updateGame(newGame: game)
@@ -73,7 +81,7 @@ class GameManager {
         databaseManager.updateGame(newGame: game)
     }
     
-    func updateGameWithDataFromHost(updatedGame: Game, player: Player? = nil) {
+    func updateGameWithDataFromHost(updatedGame: Game, player: Player? = nil) -> Game {
         let game = Game()
         game.id = updatedGame.id
         game.letter = updatedGame.letter
@@ -85,6 +93,7 @@ class GameManager {
         }
         
         databaseManager.updateGame(newGame: game)
+        return game
     }
     
     func getPlayers() -> [Player] {

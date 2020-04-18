@@ -19,7 +19,6 @@ class ConnectionManager: NSObject {
     var mcNearbyServiceBrowser: MCNearbyServiceBrowser!
     var mcNearbyServiceAdvertiser: MCNearbyServiceAdvertiser!
     
-//    var receivedGame: Game?
     
     deinit {
         print("Stopping and deallocating everything...")
@@ -83,12 +82,6 @@ class ConnectionManager: NSObject {
         }
     }
     
-//    func getGameID(dictionary: [String: Any]?) -> String? {
-//        guard let dataDictionary = receivedGame else { return nil }
-//        let id = dataDictionary["gameID"] as? String
-//        return id
-//    }
-    
     func convertDataToDictionary(data: Data) -> [String: Any]? {
         do {
             let jsonObject = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
@@ -134,7 +127,6 @@ extension ConnectionManager: MCSessionDelegate {
                     let jsonDecoder = JSONDecoder()
                     let game = try jsonDecoder.decode(Game.self, from: gameToDecode)
                     
-//                    self?.receivedGame = game
                     gameSetupViewController?.completionHandler?(isReady, game)
                 } catch {
                     Alert.shared.showReceptionError(on: UIApplication.getTopViewController()!, message: error.localizedDescription)

@@ -82,31 +82,22 @@ class GameSetupViewController: BaseViewController {
         }
     }
     
+//    MARK: - GAME ONLY ENABLES 2 PLAYERS TO PLAY AT THE MOMENT
     
     func startGameIfReady() {            
         completionHandler = { [weak self] isReady, game in
         
             
             if self!.isReady {
-                print("In general the player is ready")
+//                print("In general the player is ready")
                 
                 if isReady {
-                    print("All players are ready - so start game")
+//                    print("All players are ready - so start game")
                     
                     var gameToPass = game
                     
-                    if self?.typeOfPlayer == .Invited {
-                        print("I am an invited player, so i'll wait")
-                        if let receivedGame = game, let invitedPlayer = self?.newPlayer {
-                            receivedGame.players.append(invitedPlayer)
-                            self?.gameManager.updateGameWithDataFromHost(updatedGame: receivedGame)
-                            
-                            gameToPass = self?.gameManager.getGame(with: receivedGame.id!)
-                        }
-                    } else {
-                        print("I am the host, so wait for me")
-                        
-                        
+                    if let receivedGame = game, let invitedPlayer = self?.newPlayer {
+                        gameToPass = self?.gameManager.updateGameWithDataFromHost(updatedGame: receivedGame, player: invitedPlayer)
                     }
                     
                     let data = ["game": game!, "isReady": true] as [String : Any]
@@ -120,12 +111,12 @@ class GameSetupViewController: BaseViewController {
                     self?.navigationController?.pushViewController(gameViewController, animated: true)
 
                 } else {
-                    print("Other players are not ready but I am so display loading for me")
+//                    print("Other players are not ready but I am so display loading for me")
                     let startLoading = !isReady
                     self?.displayLoading(with: "Some player(s) is(are) not ready\nbut it won't take too long to start the game.\nPlease, wait a little bit!", loading: startLoading)
                 }
             } else {
-                print("Other player is not ready, so display loading for him")
+//                print("Other player is not ready, so display loading for him")
                 let data = ["game": game!, "isReady": false] as [String : Any]
                 self?.connectionManager.sendData(dataDictionary: data)
             }
@@ -158,6 +149,7 @@ class GameSetupViewController: BaseViewController {
     
     func checkTypeOfPlayer(type: TypeOfPlayer, gameID: String, player: Player) {
         if typeOfPlayer == .Host {
+            
             gameManager.setGameParameters(gameID: gameID,
                                           letter: selectedLetter ?? "",
                                           letters: letters,
@@ -171,21 +163,10 @@ class GameSetupViewController: BaseViewController {
             
         } else {
             
-//            var data = [String : Any]()
-            
-//            if let receivedGame = connectionManager.receivedGame {
-//                receivedGame.players.append(player)
-//                gameManager.updateGameWithDataFromHost(updatedGame: receivedGame)
-//
-//                let game = gameManager.getGame(with: receivedGame.id!)
-//
-//                data = ["game": game, "isReady": true] as [String : Any]
-//            } else {
             gameManager.joinGame(gameID: gameID, player: player)
             let game = gameManager.getGame(with: gameID)
                 
             let data = ["game": game, "isReady": true] as [String : Any]
-//            }
             connectionManager.sendData(dataDictionary: data)
         }
     }
