@@ -95,19 +95,19 @@ class GameSetupViewController: BaseViewController {
                     
                     var gameToPass = game
                     
-//                    if self?.typeOfPlayer == .Invited {
-//                        print("I am an invited player, so i'll wait")
-//                        if let receivedGame = game, let invitedPlayer = self?.newPlayer {
-//                            receivedGame.players.append(invitedPlayer)
-//                            self?.gameManager.updateGameWithDataFromHost(updatedGame: receivedGame)
-//
-//                            gameToPass = self?.gameManager.getGame(with: receivedGame.id!)
-//                        }
-//                    } else {
-//                        print("I am the host, so wait for me")
-//                        
-//
-//                    }
+                    if self?.typeOfPlayer == .Invited {
+                        print("I am an invited player, so i'll wait")
+                        if let receivedGame = game, let invitedPlayer = self?.newPlayer {
+                            receivedGame.players.append(invitedPlayer)
+                            self?.gameManager.updateGameWithDataFromHost(updatedGame: receivedGame)
+                            
+                            gameToPass = self?.gameManager.getGame(with: receivedGame.id!)
+                        }
+                    } else {
+                        print("I am the host, so wait for me")
+                        
+                        
+                    }
                     
                     let data = ["game": game!, "isReady": true] as [String : Any]
                     self?.connectionManager.sendData(dataDictionary: data)
