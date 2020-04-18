@@ -19,7 +19,7 @@ class ConnectionManager: NSObject {
     var mcNearbyServiceBrowser: MCNearbyServiceBrowser!
     var mcNearbyServiceAdvertiser: MCNearbyServiceAdvertiser!
     
-    var receivedGame: Game?
+//    var receivedGame: Game?
     
     deinit {
         print("Stopping and deallocating everything...")
@@ -83,15 +83,16 @@ class ConnectionManager: NSObject {
         }
     }
     
-    func getGameID(dictionary: [String: Any]?) -> String? {
-        guard let dataDictionary = receivedGame else { return nil }
-        let id = dataDictionary["gameID"] as? String
-        return id
-    }
+//    func getGameID(dictionary: [String: Any]?) -> String? {
+//        guard let dataDictionary = receivedGame else { return nil }
+//        let id = dataDictionary["gameID"] as? String
+//        return id
+//    }
     
     func convertDataToDictionary(data: Data) -> [String: Any]? {
         do {
-            return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            let jsonObject = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            return jsonObject
         } catch {
             print(error.localizedDescription)
         }
@@ -101,7 +102,8 @@ class ConnectionManager: NSObject {
     func convertDictionaryToData(dictionary: [String: Any]) -> Data? {
         do {
             // here "jsonData" is the dictionary encoded in JSON data
-            return try JSONSerialization.data(withJSONObject: dictionary, options: .prettyPrinted)
+            let jsonData = try JSONSerialization.data(withJSONObject: dictionary, options: .prettyPrinted)
+            return jsonData
         } catch {
             print(error.localizedDescription)
         }
@@ -122,7 +124,8 @@ extension ConnectionManager: MCSessionDelegate {
                 
                 do {
                     
-                    let gameSetupViewController = UIApplication.getTopViewController() as! GameSetupViewController
+                    let gameSetupViewController = UIApplication.getTopViewController() as? GameSetupViewController
+                    
                     let isReady = dict!["isReady"] as! Bool
                     
                     let gameAsString = dict!["game"] as! String
@@ -131,8 +134,8 @@ extension ConnectionManager: MCSessionDelegate {
                     let jsonDecoder = JSONDecoder()
                     let game = try jsonDecoder.decode(Game.self, from: gameToDecode)
                     
-                    self?.receivedGame = game
-                    gameSetupViewController.completionHandler?(isReady, game)
+//                    self?.receivedGame = game
+                    gameSetupViewController?.completionHandler?(isReady, game)
                 } catch {
                     Alert.shared.showReceptionError(on: UIApplication.getTopViewController()!, message: error.localizedDescription)
                 }

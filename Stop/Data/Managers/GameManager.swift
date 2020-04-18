@@ -28,7 +28,7 @@ class GameManager {
         return newPlayer
     }
     
-    func setGameParameters(gameID: String, start: Bool = false, letter: String = "", letters: [String]? = nil, categories: List<Category>? = nil, player: Player) {
+    func setGameParameters(gameID: String, letter: String = "", letters: [String]? = nil, categories: List<Category>? = nil, player: Player) {
         var newLetter = letter
         
         if letter == "" {
@@ -41,7 +41,6 @@ class GameManager {
         let game = Game()
         game.id = gameID
         game.letter = newLetter
-//        game.start = start
         game.categories.append(objectsIn: randomCategories)
         game.players.append(player)
         
@@ -51,14 +50,12 @@ class GameManager {
     func setRandomCategories() -> [Category] {
         let categories = databaseManager.fetchCategories()
         var categoriesToReturn = [Category]()
-        var count = 0
         
-        while (count < 8) {
+        while (categoriesToReturn.count < 8) {
             let randomCategory = categories.randomElement()!
             if !categoriesToReturn.contains(randomCategory) {
                 categoriesToReturn.append(randomCategory)
             }
-            count += 1
         }
         
         return categoriesToReturn
@@ -82,7 +79,6 @@ class GameManager {
         game.letter = updatedGame.letter
         game.players.append(objectsIn: updatedGame.players)
         game.categories = updatedGame.categories
-//        game.start = updatedGame.start
         
         if let player = player {
             game.players.append(player)

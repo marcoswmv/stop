@@ -86,29 +86,46 @@ class GameSetupViewController: BaseViewController {
     func startGameIfReady() {            
         completionHandler = { [weak self] isReady, game in
         
+            
             if self!.isReady {
-                print("In general the player is ready") // checked
+                print("In general the player is ready")
                 
                 if isReady {
-                    print("All players are ready - so start game") //  Not working as expected, Should switch self to the game, but is switching only the other players
+                    print("All players are ready - so start game")
                     
-//                        let data = ["game": game!, "isReady": true] as [String : Any]
-//                        self?.connectionManager.sendData(dataDictionary: data)
+                    var gameToPass = game
+                    
+//                    if self?.typeOfPlayer == .Invited {
+//                        print("I am an invited player, so i'll wait")
+//                        if let receivedGame = game, let invitedPlayer = self?.newPlayer {
+//                            receivedGame.players.append(invitedPlayer)
+//                            self?.gameManager.updateGameWithDataFromHost(updatedGame: receivedGame)
+//
+//                            gameToPass = self?.gameManager.getGame(with: receivedGame.id!)
+//                        }
+//                    } else {
+//                        print("I am the host, so wait for me")
+//                        
+//
+//                    }
+                    
+                    let data = ["game": game!, "isReady": true] as [String : Any]
+                    self?.connectionManager.sendData(dataDictionary: data)
                     
                     let stopLoading = !isReady
                     self?.displayLoading(loading: stopLoading)
 
                     let gameViewController = GameViewController.instantiate() as! GameViewController
-                    gameViewController.game = game
+                    gameViewController.game = gameToPass
                     self?.navigationController?.pushViewController(gameViewController, animated: true)
 
                 } else {
-                    print("Other players are not ready but I am so display  loading")
+                    print("Other players are not ready but I am so display loading for me")
                     let startLoading = !isReady
                     self?.displayLoading(with: "Some player(s) is(are) not ready\nbut it won't take too long to start the game.\nPlease, wait a little bit!", loading: startLoading)
                 }
             } else {
-                print("Other player is not ready, so display loading for him")  // checked
+                print("Other player is not ready, so display loading for him")
                 let data = ["game": game!, "isReady": false] as [String : Any]
                 self?.connectionManager.sendData(dataDictionary: data)
             }
@@ -142,7 +159,6 @@ class GameSetupViewController: BaseViewController {
     func checkTypeOfPlayer(type: TypeOfPlayer, gameID: String, player: Player) {
         if typeOfPlayer == .Host {
             gameManager.setGameParameters(gameID: gameID,
-                                          start: true,
                                           letter: selectedLetter ?? "",
                                           letters: letters,
                                           categories: selectedCategories,
@@ -150,28 +166,26 @@ class GameSetupViewController: BaseViewController {
             
             let game = gameManager.getGame(with: gameID)
             let data = ["game": game, "isReady": true] as [String : Any]
-//            print("Game from Host: ", game)
+            
             connectionManager.sendData(dataDictionary: data)
             
         } else {
             
-            var data = [String : Any]()
+//            var data = [String : Any]()
             
-            if let receivedGame = connectionManager.receivedGame {
-                receivedGame.players.append(player)
-                gameManager.updateGameWithDataFromHost(updatedGame: receivedGame)
+//            if let receivedGame = connectionManager.receivedGame {
+//                receivedGame.players.append(player)
+//                gameManager.updateGameWithDataFromHost(updatedGame: receivedGame)
+//
+//                let game = gameManager.getGame(with: receivedGame.id!)
+//
+//                data = ["game": game, "isReady": true] as [String : Any]
+//            } else {
+            gameManager.joinGame(gameID: gameID, player: player)
+            let game = gameManager.getGame(with: gameID)
                 
-                let game = gameManager.getGame(with: receivedGame.id!)
-                
-                data = ["game": game, "isReady": true] as [String : Any]
-            } else {
-                gameManager.joinGame(gameID: gameID, player: player)
-                let game = gameManager.getGame(with: gameID)
-                
-                data = ["game": game, "isReady": true] as [String : Any]
-            }
-            
-//            print("Game from another players: ", data)
+            let data = ["game": game, "isReady": true] as [String : Any]
+//            }
             connectionManager.sendData(dataDictionary: data)
         }
     }
