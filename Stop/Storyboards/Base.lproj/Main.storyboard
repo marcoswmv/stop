@@ -582,7 +582,7 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="delegate" destination="VQm-rj-bWX" id="uOy-39-MyL"/>
+                                    <outlet property="delegate" destination="VQm-rj-bWX" id="hGS-uo-QPl"/>
                                 </connections>
                             </tableView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sm1-0Q-w8Q" customClass="IBDesignableButton" customModule="Stop" customModuleProvider="target">
@@ -719,7 +719,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EWc-4R-ZIR">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EWc-4R-ZIR">
                                 <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="DZi-yT-TJ8">
@@ -782,7 +782,7 @@
                                     </constraints>
                                 </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="ASE-xS-yFQ">
-                                    <rect key="frame" x="0.0" y="418.3333358764649" width="375" height="159.99999999999994"/>
+                                    <rect key="frame" x="0.0" y="418.33333587646484" width="375" height="160"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EIj-Ux-wUY" customClass="IBDesignableButton" customModule="Stop" customModuleProvider="target">
@@ -865,7 +865,7 @@
                                                                     <rect key="frame" x="0.0" y="38.333333333333336" width="291" height="29.000000000000007"/>
                                                                     <color key="textColor" name="Label Gray App"/>
                                                                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
-                                                                    <textInputTraits key="textInputTraits"/>
+                                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                                     <connections>
                                                                         <outlet property="delegate" destination="9HN-4Z-cFb" id="AOD-VY-gNf"/>
                                                                     </connections>
@@ -912,6 +912,9 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="delegate" destination="9HN-4Z-cFb" id="0QZ-wc-aaI"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -966,12 +969,12 @@
                                                     <rect key="frame" x="22" y="10.000000000000004" width="331" height="55.333333333333343"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Gm-RQ-RGg">
-                                                            <rect key="frame" x="16" y="13.999999999999998" width="56" height="27.333333333333329"/>
+                                                            <rect key="frame" x="16" y="13.999999999999998" width="219" height="27.333333333333329"/>
                                                             <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
                                                             <color key="textColor" name="Label Gray App"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Points" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yKf-IR-7MX">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="260" verticalHuggingPriority="251" horizontalCompressionResistancePriority="760" text="Points" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yKf-IR-7MX">
                                                             <rect key="frame" x="255" y="13.999999999999998" width="56" height="27.333333333333329"/>
                                                             <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
                                                             <color key="textColor" name="Label Gray App"/>
@@ -980,11 +983,11 @@
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
+                                                        <constraint firstItem="yKf-IR-7MX" firstAttribute="leading" relation="lessThanOrEqual" secondItem="0Gm-RQ-RGg" secondAttribute="trailing" constant="20" id="8lm-2h-hLh"/>
                                                         <constraint firstAttribute="bottom" secondItem="yKf-IR-7MX" secondAttribute="bottom" constant="14" id="9Qk-Is-dCc"/>
                                                         <constraint firstItem="0Gm-RQ-RGg" firstAttribute="leading" secondItem="RCm-oW-m9H" secondAttribute="leading" constant="16" id="GxX-3b-CRX"/>
                                                         <constraint firstAttribute="trailing" secondItem="yKf-IR-7MX" secondAttribute="trailing" constant="20" id="LEH-GW-arU"/>
                                                         <constraint firstItem="yKf-IR-7MX" firstAttribute="top" secondItem="RCm-oW-m9H" secondAttribute="top" constant="14" id="doR-jy-sXG"/>
-                                                        <constraint firstItem="yKf-IR-7MX" firstAttribute="leading" relation="lessThanOrEqual" secondItem="0Gm-RQ-RGg" secondAttribute="trailing" constant="183" id="eJp-dn-Oxc"/>
                                                         <constraint firstItem="0Gm-RQ-RGg" firstAttribute="top" secondItem="RCm-oW-m9H" secondAttribute="top" constant="14" id="ieD-3X-Sor"/>
                                                         <constraint firstAttribute="bottom" secondItem="0Gm-RQ-RGg" secondAttribute="bottom" constant="14" id="zbD-yj-rXO"/>
                                                     </constraints>
@@ -1031,29 +1034,18 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Urx-uF-JHg" customClass="IBDesignableView" customModule="Stop" customModuleProvider="target">
                                 <rect key="frame" x="22" y="169" width="331" height="75"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tYv-xF-sVx">
-                                        <rect key="frame" x="53.333333333333329" y="23" width="224.33333333333337" height="29.333333333333329"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The winner is" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKS-Z6-mwL">
-                                                <rect key="frame" x="0.0" y="0.0" width="148" height="29.333333333333332"/>
-                                                <fontDescription key="fontDescription" name="Sniglet-Regular" family="Sniglet" pointSize="25"/>
-                                                <color key="textColor" name="Label Gray App"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsz-Na-AHA">
-                                                <rect key="frame" x="158" y="0.0" width="66.333333333333314" height="29.333333333333332"/>
-                                                <fontDescription key="fontDescription" name="Sniglet-Regular" family="Sniglet" pointSize="25"/>
-                                                <color key="textColor" name="Label Gray App"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The winner is" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKS-Z6-mwL">
+                                        <rect key="frame" x="91.666666666666686" y="23" width="148" height="29.333333333333329"/>
+                                        <fontDescription key="fontDescription" name="Sniglet-Regular" family="Sniglet" pointSize="25"/>
+                                        <color key="textColor" name="Label Gray App"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" name="Secondary Red App"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="7El-Xy-oUD"/>
-                                    <constraint firstItem="tYv-xF-sVx" firstAttribute="centerY" secondItem="Urx-uF-JHg" secondAttribute="centerY" id="81r-yF-6c7"/>
-                                    <constraint firstItem="tYv-xF-sVx" firstAttribute="centerX" secondItem="Urx-uF-JHg" secondAttribute="centerX" id="yEw-fN-0FJ"/>
+                                    <constraint firstItem="MKS-Z6-mwL" firstAttribute="centerX" secondItem="Urx-uF-JHg" secondAttribute="centerX" id="HuD-Fc-BpD"/>
+                                    <constraint firstItem="MKS-Z6-mwL" firstAttribute="centerY" secondItem="Urx-uF-JHg" secondAttribute="centerY" id="ehi-eu-K6E"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -1159,7 +1151,7 @@
                     <connections>
                         <outlet property="navigationBarView" destination="5uH-we-ee1" id="zxd-Kc-Gc4"/>
                         <outlet property="tableView" destination="FGb-lH-prD" id="J1e-Cc-alR"/>
-                        <outlet property="winnerName" destination="qsz-Na-AHA" id="Yd3-H6-nCX"/>
+                        <outlet property="winnerName" destination="MKS-Z6-mwL" id="njM-q8-4pw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NFX-4l-tuo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

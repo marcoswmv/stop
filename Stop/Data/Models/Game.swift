@@ -12,17 +12,17 @@ import RealmSwift
 class Game: Object, Codable {
     
 //    MARK: -Before the game
+    
     @objc dynamic var id: String? = nil
     @objc dynamic var letter: String? = nil
-    
     var players = List<Player>()
     var categories = List<Category>()
     
+    
 //    MARK: -After the game
+    
     @objc dynamic var winner: String? = nil
     @objc dynamic var total: String? = nil
-    
-    var answers = List<Answer>()
 
     convenience init(id: String) {
         self.init()

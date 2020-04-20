@@ -17,20 +17,25 @@ class GameViewController: BaseViewController {
     @IBOutlet weak var timeLabel: UILabel!
     
     @IBAction func stopWatchOnTouchUpInside(_ sender: Any) {
-        stopStopwatch()
-        
-        let scoreboardViewController = ScoreboardViewController.instantiate() as! ScoreboardViewController
-        navigationController?.pushViewController(scoreboardViewController, animated: true)
+        stopTheGame()
     }
     
     
     //    MARK: - PROPERTIES AND METHODS
     
+    var connectionManager: ConnectionManager!
+    
     var game: Game?
+    var player: Player?
     var dataSource: GameCategoriesDataSource?
     
     var timer = Timer()
     var (minutes, seconds, fractions) = (0, 0, 0)
+    
+    var gameManager = GameManager()
+    var categoryName: String?
+    
+    var completionHandler: ((Player?, Bool) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,10 +43,19 @@ class GameViewController: BaseViewController {
         setupDataSource()
         setupNavigationBar()
         hideKeyboardWhenTappedAround()
+        handleGame()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         startStopwatch()
+        print(game!)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        gameManager.cleanAnswers()
+        gameManager.cleanPlayers()
     }
     
     func setupDataSource() {
@@ -87,4 +101,28 @@ class GameViewController: BaseViewController {
         (minutes, seconds) = (0, 0)
         timeLabel.text = "00:00"
     }
+    
+    func handleGame() {
+        completionHandler = { [weak self] firstPlayer, stop in
+            if stop {
+                self?.gameManager.calculatePoints(firstPlayer: (self?.player)!)
+                
+                self?.stopStopwatch()
+                let scoreboardViewController = ScoreboardViewController.instantiate() as! ScoreboardViewController
+                self?.navigationController?.pushViewController(scoreboardViewController, animated: true)
+            }
+        }
+    }
+    
+    func stopTheGame() {
+        gameManager.calculatePoints(firstPlayer: player!)
+        
+        let data = ["player": player!, "stop": true] as [String : Any]
+        connectionManager.sendData(dataDictionary: data)
+        
+        stopStopwatch()
+        let scoreboardViewController = ScoreboardViewController.instantiate() as! ScoreboardViewController
+        navigationController?.pushViewController(scoreboardViewController, animated: true)
+    }
+    
 }

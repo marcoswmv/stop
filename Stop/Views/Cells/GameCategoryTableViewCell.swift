@@ -20,4 +20,6 @@ class GameCategoryTableViewCell: BaseTableViewCell {
             categoryWord.placeholder = data?.name
         }
     }
+    
+    
 }

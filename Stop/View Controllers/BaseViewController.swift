@@ -52,9 +52,9 @@ class BaseViewController: UIViewController {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
+
         textField.resignFirstResponder();
-        
+
         return false;
     }
     

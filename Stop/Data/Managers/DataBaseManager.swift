@@ -11,16 +11,16 @@ import RealmSwift
 
 class DataBaseManager {
     
+    let realm = try! Realm()
+    
 //    MARK: - CATEGORIES
     func createCategory(newCategory: Category) {
-        let realm = try! Realm()
         try! realm.write({
             realm.add(newCategory)
         })
     }
     
     func fetchCategories() -> [Category] {
-        let realm = try! Realm()
         let result = realm.objects(Category.self)
         
         var categories = [Category]()
@@ -30,15 +30,13 @@ class DataBaseManager {
         return categories
     }
     
-    func updateCategory(newCategory: Category) {
-        let realm = try! Realm()
+    func updateCategory(newCategory: [String: Any]) {
         try! realm.write({
-            realm.add(newCategory, update: .modified)
+            realm.create(Category.self, value: newCategory, update: .modified)
         })
     }
     
     func deleteCategory(category: Category) {
-        let realm = try! Realm()
         try! realm.write({
             realm.delete(category)
         })
@@ -47,14 +45,12 @@ class DataBaseManager {
 //    MARK: - GAME
     
     func createGame(newGame: Game) {
-        let realm = try! Realm()
         try! realm.write({
             realm.add(newGame)
         })
     }
     
     func fetchAllGames() -> [Game] {
-        let realm = try! Realm()
         let result = realm.objects(Game.self)
         
         var games = [Game]()
@@ -76,24 +72,21 @@ class DataBaseManager {
         return foundGame
     }
     
-    func updateGame(newGame: Game) {
-        let realm = try! Realm()
+    func updateGame(newGame: [String: Any]) {
         try! realm.write({
-            realm.add(newGame, update: .modified)
+            realm.create(Game.self, value: newGame, update: .modified)
         })
     }
     
 //    MARK: - PLAYER
     
     func createPlayer(newPlayer: Player) {
-        let realm = try! Realm()
         try! realm.write({
             realm.add(newPlayer)
         })
     }
     
-    func fetchPlayers() -> [Player] {
-        let realm = try! Realm()
+    func fetchAllPlayers() -> [Player] {
         let result = realm.objects(Player.self)
         
         var players = [Player]()
@@ -103,10 +96,61 @@ class DataBaseManager {
         return players
     }
     
-    func updatePlayer(newPlayer: Player) {
-        let realm = try! Realm()
+    func fetchPlayer(with ID: String) -> Player {
+        var foundPlayer = Player()
+        let players = fetchAllPlayers()
+        
+        for player in players {
+            if player.id == ID {
+                foundPlayer = player
+            }
+        }
+        return foundPlayer
+    }
+    
+    func updatePlayer(newPlayer: [String: Any]) {
         try! realm.write({
-            realm.add(newPlayer, update: .modified)
+            realm.create(Player.self, value: newPlayer, update: .modified)
         })
+    }
+    
+    func deleteAllPlayers(){
+        let players = realm.objects(Player.self)
+        
+        try! realm.write {
+            realm.delete(players)
+        }
+    }
+    
+//    MARK: - ANSWERS
+    
+    func createAnswer(newAnswer: Answer) {
+        try! realm.write({
+            realm.add(newAnswer, update: .modified)
+        })
+    }
+    
+    func fetchAllAnswers() -> [Answer] {
+        let result = realm.objects(Answer.self)
+        
+        var answers = [Answer]()
+        for answer in result {
+            answers.append(answer)
+        }
+        return answers
+    }
+    
+    func updateAnswer(newAnswer: [String: Any]) {
+        try! realm.write({
+            realm.create(Answer.self, value: newAnswer, update: .modified)
+        })
+    }
+    
+    func deleteAllAnswers(){
+        let answers = realm.objects(Answer.self)
+        
+        try! realm.write {
+            realm.delete(answers)
+        }
     }
 }

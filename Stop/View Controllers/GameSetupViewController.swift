@@ -26,7 +26,7 @@ class GameSetupViewController: BaseViewController {
         categoriesViewController.completionHandler = { categories in
             self.selectedCategories = categories
         }
-        categoriesViewController.gameID = self.newGameID
+        categoriesViewController.gameID = self.newGame?.id
         categoriesViewController.previousViewController = self.viewControllerName
         navigationController?.pushViewController(categoriesViewController, animated: true)
     }
@@ -52,7 +52,7 @@ class GameSetupViewController: BaseViewController {
     var gameManager = GameManager()
     var typeOfPlayer: TypeOfPlayer?
     
-    var newGameID: String?
+    var newGame: Game?
     var newPlayer: Player?
     
     var completionHandler: ((Bool, Game?) -> Void)?
@@ -84,91 +84,82 @@ class GameSetupViewController: BaseViewController {
     
 //    MARK: - GAME ONLY ENABLES 2 PLAYERS TO PLAY AT THE MOMENT
     
-    func startGameIfReady() {            
+    func startGameIfReady() {
+//        gameManager.joinGame(gameToJoin: newGame!, player: newPlayer!)
+        
         completionHandler = { [weak self] isReady, game in
         
-            
             if self!.isReady {
 //                print("In general the player is ready")
                 
                 if isReady {
 //                    print("All players are ready - so start game")
                     
-                    var gameToPass = game
-                    
-                    if let receivedGame = game, let invitedPlayer = self?.newPlayer {
-                        gameToPass = self?.gameManager.updateGameWithDataFromHost(updatedGame: receivedGame, player: invitedPlayer)
+                    if let receivedGame = game, let currentPlayer = self?.newPlayer {
+                        self?.newGame = self?.gameManager.updateGameWithDataFromHost(gameToUpdate: receivedGame, player: currentPlayer)
+                        
+                        guard let classGame = self?.newGame else { return }
+                        let data = ["game": classGame, "isReady": true] as [String : Any]
+                        self?.connectionManager.sendData(dataDictionary: data)
+                        
+                        let stopLoading = !isReady
+                        self?.displayLoading(loading: stopLoading)
+
+                        let gameViewController = GameViewController.instantiate() as! GameViewController
+                        
+                        gameViewController.game = classGame
+                        gameViewController.player = self?.newPlayer
+                        gameViewController.connectionManager = self?.connectionManager
+                        self?.navigationController?.pushViewController(gameViewController, animated: true)
                     }
-                    
-                    let data = ["game": game!, "isReady": true] as [String : Any]
-                    self?.connectionManager.sendData(dataDictionary: data)
-                    
-                    let stopLoading = !isReady
-                    self?.displayLoading(loading: stopLoading)
-
-                    let gameViewController = GameViewController.instantiate() as! GameViewController
-                    gameViewController.game = gameToPass
-                    self?.navigationController?.pushViewController(gameViewController, animated: true)
-
                 } else {
 //                    print("Other players are not ready but I am so display loading for me")
+                    
                     let startLoading = !isReady
-                    self?.displayLoading(with: "Some player(s) is(are) not ready\nbut it won't take too long to start the game.\nPlease, wait a little bit!", loading: startLoading)
+                    self?.displayLoading(with: "The other player is not ready\nbut it won't take too long to start the game.\nPlease, wait a little bit!", loading: startLoading)
                 }
             } else {
-//                print("Other player is not ready, so display loading for him")
-                let data = ["game": game!, "isReady": false] as [String : Any]
-                self?.connectionManager.sendData(dataDictionary: data)
+//                print("I'm not ready, so display loading for other player")
+                
+                if let receivedGame = game {
+                    self?.newGame = self?.gameManager.updateGameWithDataFromHost(gameToUpdate: receivedGame)
+                    
+                    guard let classGame = self?.newGame else { return }
+                    let data = ["game": classGame, "isReady": false] as [String : Any]
+                    self?.connectionManager.sendData(dataDictionary: data)
+                }
             }
         }
     }
     
+    func setupNewGame() {
+        if let playerName = playerName.text {
+            if playerName != "" {
+                newPlayer = gameManager.updatePlayers(player: newPlayer!, name: playerName)
+                if typeOfPlayer == .Host {
+                    newGame = gameManager.setGameParameters(gameToSet: newGame!,
+                                                            letter: selectedLetter ?? "",
+                                                            letters: letters,
+                                                            categories: selectedCategories,
+                                                            typeOfPlayer: .Host,
+                                                            player: newPlayer!)
+                } else {
+                    newGame = gameManager.setGameParameters(gameToSet: newGame!,
+                                                            typeOfPlayer: .Invited,
+                                                            player: newPlayer!)
+                }
+            }
+        }
+        
+        guard let game = newGame else { return }
+        let data = ["game": game, "isReady": true] as [String : Any]
+        connectionManager.sendData(dataDictionary: data)
+    }
     
     func setupUIAppearance() {
         navigationBar.backButton.isHidden = true
         navigationBar.editButton.isHidden = true
         hideKeyboardWhenTappedAround()
-    }
-    
-    func setupNewGame() {
-        let deviceName = connectionManager.peerID.displayName
-        
-        if let playerName = playerName.text {
-            if playerName != "" {
-                newPlayer = gameManager.createNewPlayer(name: playerName, deviceName: deviceName)
-            } else {
-                newPlayer = gameManager.createNewPlayer(name: deviceName, deviceName: deviceName)
-            }
-        }
-        
-        guard let gameID = newGameID else { return }
-        guard let newPlayer = newPlayer else { return }
-        
-        checkTypeOfPlayer(type: typeOfPlayer!, gameID: gameID, player: newPlayer)
-    }
-    
-    func checkTypeOfPlayer(type: TypeOfPlayer, gameID: String, player: Player) {
-        if typeOfPlayer == .Host {
-            
-            gameManager.setGameParameters(gameID: gameID,
-                                          letter: selectedLetter ?? "",
-                                          letters: letters,
-                                          categories: selectedCategories,
-                                          player: player)
-            
-            let game = gameManager.getGame(with: gameID)
-            let data = ["game": game, "isReady": true] as [String : Any]
-            
-            connectionManager.sendData(dataDictionary: data)
-            
-        } else {
-            
-            gameManager.joinGame(gameID: gameID, player: player)
-            let game = gameManager.getGame(with: gameID)
-                
-            let data = ["game": game, "isReady": true] as [String : Any]
-            connectionManager.sendData(dataDictionary: data)
-        }
     }
     
     func createLetterPicker(){

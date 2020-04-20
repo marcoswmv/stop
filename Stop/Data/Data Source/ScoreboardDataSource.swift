@@ -13,6 +13,9 @@ class ScoreboardDataSource: BaseDataSource {
     private let manager = GameManager()
     private(set) var data: [Player]?
     
+    var firstPlayer: Player?
+    var secondPlayer: Player?
+    
     override func setup() {
         super.setup()
     }
@@ -22,6 +25,8 @@ class ScoreboardDataSource: BaseDataSource {
         data = manager.getPlayers()
         self.tableView.reloadData()
         
+        firstPlayer = data?.first
+        secondPlayer = data?.last
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

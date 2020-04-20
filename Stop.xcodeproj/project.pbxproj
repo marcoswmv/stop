@@ -47,6 +47,7 @@
 		F7A3A3BD244023C700F17326 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A3A3BC244023C700F17326 /* Alert.swift */; };
 		F7A3A3BF2440259E00F17326 /* UIApplication+TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A3A3BE2440259E00F17326 /* UIApplication+TopViewController.swift */; };
 		F7A3A3C1244035B200F17326 /* GameCategoriesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A3A3C0244035B200F17326 /* GameCategoriesDataSource.swift */; };
+		F7BCE814244BDA2A00EC638A /* GameViewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BCE813244BDA2A00EC638A /* GameViewController+UITextFieldDelegate.swift */; };
 		F7C799D82440C03C0005DBFD /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C799D72440C03C0005DBFD /* Answer.swift */; };
 		F7C799DA2440C2960005DBFD /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C799D92440C2960005DBFD /* GameManager.swift */; };
 		F7C799DC244235180005DBFD /* UIApplication+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C799DB244235180005DBFD /* UIApplication+Loading.swift */; };
@@ -106,6 +107,7 @@
 		F7A3A3BC244023C700F17326 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		F7A3A3BE2440259E00F17326 /* UIApplication+TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+TopViewController.swift"; sourceTree = "<group>"; };
 		F7A3A3C0244035B200F17326 /* GameCategoriesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCategoriesDataSource.swift; sourceTree = "<group>"; };
+		F7BCE813244BDA2A00EC638A /* GameViewController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameViewController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
 		F7C799D72440C03C0005DBFD /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
 		F7C799D92440C2960005DBFD /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		F7C799DB244235180005DBFD /* UIApplication+Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Loading.swift"; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 				F7C799DD244271F80005DBFD /* CategoriesViewController+TableViewDelegate.swift */,
 				F71645EE243ECFEF00A8673E /* GameSetupVC+UIPickerViewDataSource.swift */,
 				F71645EC243ECFBE00A8673E /* GameSetupVC+UIPickerViewDelegate.swift */,
+				F7BCE813244BDA2A00EC638A /* GameViewController+UITextFieldDelegate.swift */,
 				F71645E8243DE7B600A8673E /* MainMenuVC+MCNearbyServiceAdvertiserDelegate.swift */,
 				F7E591E3243BBA7B000CFC54 /* MainMenuVC+MCNearbyServiceBrowserDelegate.swift */,
 				F7A3A3AF243FF79800F17326 /* String+CapitalizeFirstLetter.swift */,
@@ -505,6 +508,7 @@
 				F71645DF243D0E3E00A8673E /* GameSetupViewController.swift in Sources */,
 				F71645DD243D021200A8673E /* Separator.swift in Sources */,
 				F7A3A3BF2440259E00F17326 /* UIApplication+TopViewController.swift in Sources */,
+				F7BCE814244BDA2A00EC638A /* GameViewController+UITextFieldDelegate.swift in Sources */,
 				F7A3A3BD244023C700F17326 /* Alert.swift in Sources */,
 				F7A3A3A3243FBEAC00F17326 /* Category.swift in Sources */,
 			);
