@@ -14,6 +14,8 @@ class CategoriesDataSource: BaseDataSource {
     private let manager = CategoriesManager()
     private(set) var data: [Category]?
     
+    var categoriesName: String?
+    
     override func setup() {
         super.setup()
     }
@@ -49,7 +51,7 @@ class CategoriesDataSource: BaseDataSource {
         return true
     }
     
-    func tableView(_ tableView: UITableView, comSmit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
             let categoryToDelete = data![indexPath.row]

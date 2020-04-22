@@ -69,9 +69,18 @@ class ConnectionManager: NSObject {
                     
                     data = convertDictionaryToData(dictionary: newDict)!
                     
-                } else if dataDictionary.keys.contains("stop") {
-//                    Adapt this part of the condition for the STOP
-                    data = convertDictionaryToData(dictionary: dataDictionary)!
+                } else if dataDictionary.keys.contains("player"), dataDictionary.keys.contains("stop") {
+                    
+                    var newDict = dataDictionary
+                    let player = newDict["player"] as! Player
+                    
+                    let jsonEncoder = JSONEncoder()
+                    let encodedPlayer = try jsonEncoder.encode(player)
+                    let playerAsString = String(decoding: encodedPlayer, as: UTF8.self)
+                    
+                    newDict["player"] = playerAsString
+                    
+                    data = convertDictionaryToData(dictionary: newDict)!
                 }
                 
                 try mcSession.send(data, toPeers: mcSession.connectedPeers, with: .reliable)
@@ -114,7 +123,6 @@ extension ConnectionManager: MCSessionDelegate {
             let dict = self?.convertDataToDictionary(data: data)
             
             if (dict?.keys.contains("game"))!, (dict?.keys.contains("isReady"))! {
-                
                 do {
                     
                     let gameSetupViewController = UIApplication.getTopViewController() as? GameSetupViewController
@@ -131,10 +139,23 @@ extension ConnectionManager: MCSessionDelegate {
                 } catch {
                     Alert.shared.showReceptionError(on: UIApplication.getTopViewController()!, message: error.localizedDescription)
                 }
-            } else if (dict?.keys.contains("stop"))! {
-                            
-//                TODO: THE FLAG TO STOP THE GAME
-                print("Dictionary: ", dict!)
+            } else if (dict?.keys.contains("player"))!, (dict?.keys.contains("stop"))! {
+                do {
+                    
+                    let gameViewController = UIApplication.getTopViewController() as? GameViewController
+                    
+                    let stop = dict!["stop"] as! Bool
+                    
+                    let playerAsString = dict!["player"] as! String
+                    let playerToDecode = Data(playerAsString.utf8)
+                    
+                    let jsonDecoder = JSONDecoder()
+                    let player = try jsonDecoder.decode(Player.self, from: playerToDecode)
+                    
+                    gameViewController?.completionHandler?(player, stop)
+                } catch {
+                    Alert.shared.showReceptionError(on: UIApplication.getTopViewController()!, message: error.localizedDescription)
+                }
             }
         }
     }

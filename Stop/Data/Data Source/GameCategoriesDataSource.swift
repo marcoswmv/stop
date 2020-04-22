@@ -35,7 +35,13 @@ class GameCategoriesDataSource: BaseDataSource {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: GameCategoryTableViewCell.identifier) as! GameCategoryTableViewCell
         
         cell.data = data![indexPath.row]
-        cell.categoryWord.tag += 1
+        cell.categoryWord.tag = indexPath.row
+        cell.category.tag = indexPath.row
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = .clear
+        cell.selectedBackgroundView = backgroundView
+        
         
         return cell
     }

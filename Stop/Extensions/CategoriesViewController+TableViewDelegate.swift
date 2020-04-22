@@ -24,7 +24,6 @@ extension CategoriesViewController: UITableViewDelegate {
             }
             
             let selectedCategory = dataSource?.data![indexPath.row]
-            print(selectedCategory!)
             
             let realm = try! Realm()
             try! realm.write({

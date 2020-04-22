@@ -12,21 +12,25 @@ import MultipeerConnectivity
 extension MainMenuViewController: MCNearbyServiceBrowserDelegate {
     
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
-        let newGameID = gameManager.createNewGame().id // Where I create the GameID
-        let data = Data(newGameID!.utf8)
+        let newGame = gameManager.createNewGame()
+        let deviceName = appDelegate.connectionManager.peerID.displayName
+        let newPlayer = gameManager.createNewPlayer(name: deviceName, deviceName: deviceName, game: newGame)
         let session = appDelegate.connectionManager.mcSession!
         let waitingTime = TimeInterval(0)
         
-//        Inviting all the players that are nearby
-        browser.invitePeer(peerID, to: session, withContext: data, timeout: waitingTime)
-                
-//        Switching to game setup
+        do {
+            let gameAsData = try JSONEncoder().encode(newGame)
+            browser.invitePeer(peerID, to: session, withContext: gameAsData, timeout: waitingTime)
+        } catch {
+            Alert.shared.showSendError(on: UIApplication.getTopViewController()!, message: error.localizedDescription)
+        }
+        
         let gameSetupViewController = GameSetupViewController.instantiate() as! GameSetupViewController
 
-        gameSetupViewController.newGameID = newGameID
+        gameSetupViewController.newGame = newGame
         gameSetupViewController.connectionManager = appDelegate.connectionManager
         gameSetupViewController.typeOfPlayer = .Host
-
+        gameSetupViewController.newPlayer = newPlayer
         navigationController?.pushViewController(gameSetupViewController, animated: true)
     }
     

@@ -22,7 +22,6 @@ class BaseDataSource: NSObject, UITableViewDataSource {
     
     func setup() {
         self.tableView.dataSource = self
-//        self.tableView.delegate = self
     }
     
     func reload() {
@@ -37,7 +36,4 @@ class BaseDataSource: NSObject, UITableViewDataSource {
         fatalError("Not implemented")
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        fatalError("Not implemented")
-//    }
 }

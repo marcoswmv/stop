@@ -22,19 +22,25 @@ extension MainMenuViewController: MCNearbyServiceAdvertiserDelegate {
                                             let mcSession = self?.appDelegate.connectionManager.mcSession
                                             invitationHandler(true, mcSession)
                                             
-                                            let gameSetupViewController = GameSetupViewController.instantiate() as! GameSetupViewController
+                                            do {
+                                                guard let game = context else { return }
+                                                let gameToReceive = try JSONDecoder().decode(Game.self, from: game)
                                             
-                                            if let data = context {
-                                                let gameID = String(decoding: data, as: UTF8.self)
-                                                gameSetupViewController.newGameID = gameID
-                                            } else {
-                                                print("No data received")
+                                                guard let deviceName = self?.appDelegate.connectionManager.peerID.displayName else { return }
+                                                guard let newPlayer = self?.gameManager.createNewPlayer(name: deviceName, deviceName: deviceName, game: gameToReceive) else { return }
+                                                
+                                                
+                                                let gameSetupViewController = GameSetupViewController.instantiate() as! GameSetupViewController
+                                                
+                                                gameSetupViewController.newGame = gameToReceive
+                                                gameSetupViewController.connectionManager = self?.appDelegate.connectionManager
+                                                gameSetupViewController.typeOfPlayer = .Invited
+                                                gameSetupViewController.newPlayer = newPlayer
+                                                self?.navigationController?.pushViewController(gameSetupViewController, animated: true)
+                                                
+                                            } catch {
+                                                Alert.shared.showReceptionError(on: UIApplication.getTopViewController()!, message: error.localizedDescription)
                                             }
-                                            
-                                            gameSetupViewController.connectionManager = self?.appDelegate.connectionManager
-                                            gameSetupViewController.typeOfPlayer = .Invited
-                                            
-                                            self?.navigationController?.pushViewController(gameSetupViewController, animated: true)
         })
         let declineAction = UIAlertAction(title: NSLocalizedString("Decline", comment: "Invitation alert button - Decline"),
                                           style: .cancel, handler: { [weak self] action in

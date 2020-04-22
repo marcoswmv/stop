@@ -11,14 +11,14 @@ import RealmSwift
 
 class Answer: Object, Codable {
     
-    @objc dynamic var categoryID: String?
     @objc dynamic var word: String?
-    @objc dynamic var playerName: String?
+    @objc dynamic var categoryID: String?
+    @objc dynamic var playerID: String?
     
-    init(categoryID: String, word: String, playerName: String) {
-        self.categoryID = categoryID
+    init(word: String, categoryID: String, playerID: String) {
         self.word = word
-        self.playerName = playerName
+        self.categoryID = categoryID
+        self.playerID = playerID
     }
     
     required init() {
@@ -26,6 +26,6 @@ class Answer: Object, Codable {
     }
     
     override class func primaryKey() -> String? {
-        return "categoryID"
+        return "word"
     }
 }

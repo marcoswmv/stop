@@ -22,9 +22,8 @@ class ScoreboardViewController: BaseViewController {
     
 //    MARK: - Properties
     
-    var previousViewController: String?
-    
     var dataSource: ScoreboardDataSource?
+    var gameManager = GameManager()
     
 //    MARK: - Methods
     override func viewDidLoad() {
@@ -33,6 +32,9 @@ class ScoreboardViewController: BaseViewController {
         navigationBarView.editButton.isHidden = true
         navigationBarView.backButton.isHidden = true
         setupDataSource()
+        
+        winnerName.text = gameManager.findOutTheWinner(firstPlayer: (dataSource?.firstPlayer)!,
+                                                       secondPlayer: (dataSource?.secondPlayer)!)
     }
     
     func setupDataSource() {
