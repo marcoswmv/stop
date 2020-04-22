@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
-   <Group
-      location = "group:Screenshots"
-      name = "Screenshots">
-      <FileRef
-         location = "group:Simulator Screen Shot - iPhone 11 - 2020-04-22 at 16.30.35.png">
-      </FileRef>
-   </Group>
    <FileRef
       location = "group:Stop.xcodeproj">
    </FileRef>
