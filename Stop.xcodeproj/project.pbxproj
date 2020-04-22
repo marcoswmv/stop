@@ -48,7 +48,6 @@
 		F7A3A3BF2440259E00F17326 /* UIApplication+TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A3A3BE2440259E00F17326 /* UIApplication+TopViewController.swift */; };
 		F7A3A3C1244035B200F17326 /* GameCategoriesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A3A3C0244035B200F17326 /* GameCategoriesDataSource.swift */; };
 		F7BCE814244BDA2A00EC638A /* GameViewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BCE813244BDA2A00EC638A /* GameViewController+UITextFieldDelegate.swift */; };
-		F7BFC4522450863C00784B72 /* Simulator Screen Shot - iPhone 11 - 2020-04-22 at 16.30.35.png in Resources */ = {isa = PBXBuildFile; fileRef = F7BFC4512450863C00784B72 /* Simulator Screen Shot - iPhone 11 - 2020-04-22 at 16.30.35.png */; };
 		F7C799D82440C03C0005DBFD /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C799D72440C03C0005DBFD /* Answer.swift */; };
 		F7C799DA2440C2960005DBFD /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C799D92440C2960005DBFD /* GameManager.swift */; };
 		F7C799DC244235180005DBFD /* UIApplication+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C799DB244235180005DBFD /* UIApplication+Loading.swift */; };
@@ -109,7 +108,6 @@
 		F7A3A3BE2440259E00F17326 /* UIApplication+TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+TopViewController.swift"; sourceTree = "<group>"; };
 		F7A3A3C0244035B200F17326 /* GameCategoriesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCategoriesDataSource.swift; sourceTree = "<group>"; };
 		F7BCE813244BDA2A00EC638A /* GameViewController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameViewController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
-		F7BFC4512450863C00784B72 /* Simulator Screen Shot - iPhone 11 - 2020-04-22 at 16.30.35.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Simulator Screen Shot - iPhone 11 - 2020-04-22 at 16.30.35.png"; sourceTree = "<group>"; };
 		F7C799D72440C03C0005DBFD /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
 		F7C799D92440C2960005DBFD /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		F7C799DB244235180005DBFD /* UIApplication+Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Loading.swift"; sourceTree = "<group>"; };
@@ -174,7 +172,6 @@
 		F73ECA0D2439F8B1003C320C = {
 			isa = PBXGroup;
 			children = (
-				F7BFC4502450863C00784B72 /* Screenshots */,
 				F73ECA182439F8B1003C320C /* Stop */,
 				F73ECA172439F8B1003C320C /* Products */,
 				FD0E0E166B72F491AAD6AF5D /* Pods */,
@@ -350,14 +347,6 @@
 			path = "Data Source";
 			sourceTree = "<group>";
 		};
-		F7BFC4502450863C00784B72 /* Screenshots */ = {
-			isa = PBXGroup;
-			children = (
-				F7BFC4512450863C00784B72 /* Simulator Screen Shot - iPhone 11 - 2020-04-22 at 16.30.35.png */,
-			);
-			path = Screenshots;
-			sourceTree = "<group>";
-		};
 		F7E591E5243BBF04000CFC54 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -441,7 +430,6 @@
 				F73ECA232439F8B2003C320C /* Icons.xcassets in Resources */,
 				F7E591EA243BC9AD000CFC54 /* Sniglet-Regular.ttf in Resources */,
 				F7E591EB243BC9AD000CFC54 /* Sniglet-ExtraBold.ttf in Resources */,
-				F7BFC4522450863C00784B72 /* Simulator Screen Shot - iPhone 11 - 2020-04-22 at 16.30.35.png in Resources */,
 				F71645D9243CFD5E00A8673E /* NavigationBarView.xib in Resources */,
 				F73ECA212439F8B1003C320C /* Main.storyboard in Resources */,
 			);
